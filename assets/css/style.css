@@ -1,0 +1,156 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background: #ffffff;
+    color: #333;
+}
+
+.header{
+    width: 100%;
+    background: #ffffff;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 120px;
+}
+
+.logo{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.nav-links{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+
+     transition:0.3s;
+}
+
+.nav-links a:hover{
+    color: #0077ff;
+}
+
+.auth-buttons{
+    display: flex;
+    gap: 15px;
+}
+
+.auth-buttons a{
+    text-decoration: none;
+    color:#333;
+    font-weight: 600;
+
+     transition:0.3s;
+}
+
+.hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 120px;
+}
+
+.booking-widget{
+    width:100%;
+    padding:0 120px;
+    margin-top:-70px;
+    position:relative;
+}
+
+.booking-card{
+    background:white;
+    border-radius:20px;
+    padding:32px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.booking-tabs{
+    display:flex;
+    gap:16px;
+    margin-bottom:30px;
+}
+
+.tab{
+    border:none;
+    background:#f5f5f5;
+    padding:14px 24px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.tab.active{
+    background:#1976D2;
+    color:white;
+}
+
+.flight-form{
+    display:flex;
+    gap:20px;
+    align-items:end;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.form-group input,
+.form-group select{
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.herocontent{
+    width: 48%;
+}
+
+.hero-image{
+    width: 40%;
+}
+
+.hero h2{
+    font-size: 56px;
+    margin-bottom: 20px;
+}
+
+.hero p{
+    font-size: 20px;
+    margin-bottom: 30 px;
+}
+
+.btn-primary{
+    display: inline-block;
+    padding: 16px 36px;
+    background: #1976D2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-primary:hover{
+    background: #1565c0;
+}
