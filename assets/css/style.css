@@ -104,8 +104,8 @@ body{
 
 .flight-form{
     display:flex;
-    gap:20px;
-    align-items:end;
+    flex-direction: column;
+    gap:24px;
 }
 
 .form-group{
@@ -114,15 +114,7 @@ body{
     flex:1;
 }
 
-.form-group input,
-.form-group select{
-    padding:14px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:16px;
-}
-
-.herocontent{
+.hero-content{
     width: 48%;
 }
 
@@ -137,7 +129,7 @@ body{
 
 .hero p{
     font-size: 20px;
-    margin-bottom: 30 px;
+    margin-bottom: 30px;
 }
 
 .btn-primary{
@@ -153,4 +145,48 @@ body{
 
 .btn-primary:hover{
     background: #1565c0;
+}
+
+.form-row{
+
+    display:flex;
+
+    gap:24px;
+
+    margin-bottom:24px;
+
+}
+
+.form-group input,
+.form-group select{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #dcdcdc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:0.3s;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:#1976D2;
+
+}
+
+.booking-form{
+    display:none;
+}
+
+.booking-form.active{
+    display:block;
 }

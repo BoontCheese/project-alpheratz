@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,16 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
     <header class="header">
         <nav class="navbar">
 
-            <h1>
-                Starlink Tour
+            <h1 class="logo">
+                <a href="index.html">
+                    Starlink Tour
+                </a>
+
             </h1>
 
             <ul class="nav-links">
@@ -20,7 +25,7 @@
                 <li><a href="#">Tiket Pesawat</a></li>
                 <li><a href="#">Hotel</a></li>
                 <li><a href="#">Paket Wisata</a></li>
-                <li><a href="#">Sewa Mobil</a></li> 
+                <li><a href="#">Sewa Mobil</a></li>
                 <li><a href="#">Promo</a></li>
                 <li><a href="#">Kontak</a></li>
             </ul>
@@ -37,137 +42,249 @@
 
     <main>
 
-    <!-- HERO -->
-    <section class="hero">
+        <!-- HERO -->
+        <section class="hero">
 
-        <div class="hero-content">
+            <div class="hero-content">
 
-            <h2>
-                Perjalanan Lebih Mudah,
-                Harga Lebih Bersahabat.
-            </h2>
+                <h2>
+                    Perjalanan Lebih Mudah,
+                    Harga Lebih Bersahabat.
+                </h2>
 
-            <p>
-                Pesan Tiket Pesawat, Hotel,
-                Paket Wisata dan Sewa Mobil
-                dalam satu sentuhan.
-            </p>
+                <p>
+                    Pesan Tiket Pesawat, Hotel,
+                    Paket Wisata dan Sewa Mobil
+                    dalam satu sentuhan.
+                </p>
 
-            <a href="#" class="btn-primary">
-                Mulai Cari
-            </a>
+                <a href="#" class="btn-primary">
+                    Mulai Cari
+                </a>
 
-        </div>
+            </div>
 
-        <div class="hero-image">
+            <div class="hero-image">
 
-            <img
-                src="assets/images/hero.png"
-                alt="Travel Illustration">
+                <img src="assets/images/hero.png" alt="Travel Illustration">
 
-        </div>
+            </div>
 
-    </section>
+        </section>
 
-    <!-- Booking Widget -->
-<section class="booking-widget">
+        <!-- Booking Widget -->
+        <section class="booking-widget">
 
-    <div class="booking-card">
+            <div class="booking-card">
 
-        <div class="booking-tabs">
+                <div class="booking-tabs">
 
-            <button class="tab active">
-                ✈ Pesawat
-            </button>
+                    <button class="tab active" data-form="flight">
+                        ✈ Pesawat
+                    </button>
 
-            <button class="tab">
-                🏨 Hotel
-            </button>
+                    <button class="tab" data-form="hotel">
+                        🏨 Hotel
+                    </button>
 
-            <button class="tab">
-                🧳 Paket Wisata
-            </button>
+                    <button class="tab" data-form="tour">
+                        🧳 Paket Wisata
+                    </button>
 
-            <button class="tab">
-                🚗 Sewa Mobil
-            </button>
+                    <button class="tab" data-form="car">
+                        🚗 Sewa Mobil
+                    </button>
 
-        </div>
+                </div>
 
-        <div class="booking-content">
-            <!-- Flight Form -->
-           <form class="flight-form">
+                <div class="booking-content">
 
-    <div class="form-group">
+                    <form class="booking-form flight-form active" id="flight-form">
+                        <!-- Flight Form -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="from">Dari</label>
+                                    <input type="text" placeholder="Contoh: Jakarta">
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label for="to">Ke</label>
+                                    <input type="text" placeholder="Contoh: Surabaya">
+                                </div>
+                            </div>
 
-        <label>Dari</label>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="departure">Tanggal Berangkat</label>
+                                    <input type="date">
+                                </div>
 
-        <input
-            type="text"
-            placeholder="Contoh: Surabaya">
+                                <div class="form-group">
+                                    <label for="return">Tanggal Kembali</label>
+                                    <input type="date">
+                                </div>
 
-    </div>
 
-    <div class="form-group">
+                                <div class="form-group">
+                                    <label for="pax">Penumpang</label>
+                                    <select>
+                                        <option>1 Dewasa</option>
+                                        <option>2 Dewasa</option>
+                                        <option>3 Dewasa</option>
+                                        <option>4 Dewasa</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        <label>Ke</label>
+                            <button type="submit" class="btn-primary">
+                                Cari Tiket
+                            </button>
+                    </form>
 
-        <input
-            type="text"
-            placeholder="Contoh: Jakarta">
+                    <form class="booking-form hotel-form" id="hotel-form">
+                        <!-- Hotel Form -->
+                            <div class="form-group">
+                                <label for="destination">Tujuan</label>
+                                <input type="text" placeholder="Ketik nama kota / hotel / destinasi">
+                            </div>
 
-    </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="CI">Tanggal Check-in</label>
+                                    <input type="date">
+                                </div>
 
-    <div class="form-group">
+                                <div class="form-group">
+                                    <label for="CO">Tanggal Check-out</label>
+                                    <input type="date">
+                                </div>
 
-        <label>Tanggal Berangkat</label>
+                                <div class="form-group">
+                                    <label for="duration">Durasi</label>
+                                    <select>
+                                        <option>1 Malam</option>
+                                        <option>2 Malam</option>
+                                        <option>3 Malam</option>
+                                        <option>4 Malam</option>
+                                    </select>
+                                </div>
 
-        <input type="date">
+                                <div class="form-group">
+                                    <label for="room">Kamar</label>
+                                    <select>
+                                        <option>1 Kamar</option>
+                                        <option>2 Kamar</option>
+                                        <option>3 Kamar</option>
+                                        <option>4 Kamar</option>
+                                    </select>
+                                </div>
 
-    </div>
+                            </div>
 
-    <div class="form-group">
+                            <button type="submit" class="btn-primary">
+                                Cari Hotel
+                            </button>
+                    </form>
 
-        <label>Penumpang</label>
+                    <form class="booking-form tour-form" id="tour-form">
+                        <!-- Tour Form -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="destination">Destinasi Liburan Anda</label>
+                                    <input type="text" placeholder="Ketik nama negara / kota / destinasi">
+                                </div>
 
-        <select>
+                                <div class="form-group">
+                                    <label for="date">Tanggal Liburan Anda</label>
+                                    <input type="date">
+                                </div>                           
 
-            <option>1 Dewasa</option>
-            <option>2 Dewasa</option>
-            <option>3 Dewasa</option>
+                            </div>
 
-        </select>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="adults">Total Dewasa</label>
+                                    <input type="number">
+                                </div>
 
-    </div>
+                                <div class="form-group">
+                                    <label for="childs">Total Anak</label>
+                                    <input type="number">
+                                </div>
 
-    <button
-        type="submit"
-        class="btn-primary">
+                                <div class="form-group">
+                                    <label for="infants">Total Bayi</label>
+                                    <input type="number">
+                                </div>
 
-        Cari Tiket
+                            </div>
 
-    </button>
+                            <button type="submit" class="btn-primary">
+                                Cari Paket Wisata
+                            </button>
+                    </form>
 
-</form>
+                    <form class="booking-form car-form" id="car-form">
+                        <!-- Car Form -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="from">Kota Asal</label>
+                                    <input type="text" placeholder="Contoh : Surabaya">
+                                </div>
 
-</section>
-    <section class="services">
+                                <div class="form-group">
+                                    <label for="to">Kota Tujuan</label>
+                                    <input type="text" placeholder="Contoh : Malang">
+                                </div>
+                            </div>
 
-    </section>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="unit">Jenis Unit</label>
+                                    <input type="text" placeholder="Contoh : Hiace">
+                                </div>
 
-    <section class="destinations">
+                                <div class="form-group">
+                                    <label for="start date">Tanggal Mulai Sewa</label>
+                                    <input type="date">
+                                </div>
 
-    </section>
+                                <div class="form-group">
+                                    <label for="end date">Tanggal Berakhir Sewa</label>
+                                    <input type="date">
+                                </div>
 
-    <section class="testimonials">
+                            </div>
 
-    </section>
+                            <button type="submit" class="btn-primary">
+                                Cari Sewa Kendaraan
+                            </button>
+                    </form>
 
-    <section class="youtube">
 
-    </section>
+                </div>
 
-</main>
+            </div>
+
+        </section>
+
+        <section class="services">
+
+        </section>
+
+        <section class="destinations">
+
+        </section>
+
+        <section class="testimonials">
+
+        </section>
+
+        <section class="youtube">
+
+        </section>
+
+    </main>
 
     <footer>
 
@@ -175,4 +292,5 @@
 
     <script src="assets/js/script.js"> </script>
 </body>
+
 </html>
