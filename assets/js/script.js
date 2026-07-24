@@ -4,11 +4,10 @@ const observer = new IntersectionObserver(function(entries){
 
     entries.forEach(function(entry){
 
-        console.log(entry.target);
-        console.log(entry.isIntersecting);
-
         if(entry.isIntersecting){
+
             entry.target.classList.add("show");
+
             observer.unobserve(entry.target);
 
         }
@@ -16,13 +15,37 @@ const observer = new IntersectionObserver(function(entries){
     });
 
 });
-
 const reveals = document.querySelectorAll(".reveal");
 
 reveals.forEach(function(section){
+
     observer.observe(section);
+
 });
 
+const serviceCards = document.querySelectorAll(".service-card");
+
+serviceCards.forEach(function(card, index){
+
+    card.style.transitionDelay = `${index * 100}ms`;
+
+});
+
+const destinationCards = document.querySelectorAll(".destination-card");
+
+destinationCards.forEach(function(card, index){
+
+    card.style.transitionDelay = `${index * 100}ms`;
+
+});
+
+const youtubeCards = document.querySelectorAll(".youtube-card");
+
+youtubeCards.forEach(function(card, index){
+
+    card.style.transitionDelay = `${index * 100}ms`;
+
+});
 
 tabs.forEach(function(tab){
 

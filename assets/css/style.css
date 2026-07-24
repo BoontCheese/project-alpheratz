@@ -372,3 +372,50 @@ body{
     opacity:1;
     transform:translateY(0);
 }
+
+.youtube{
+    padding:100px 120px;
+}
+
+.youtube-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.youtube-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.youtube-card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.youtube-card iframe{
+    width:100%;
+    aspect-ratio:16 / 9;
+    border:none;
+    display:block;
+}
+
+.youtube-content{
+    padding:20px;
+}
+
+.youtube-content h3{
+    margin-bottom:8px;
+    font-size:22px;
+}
+
+.youtube-content p{
+    color:#666;
+}
+
