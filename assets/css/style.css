@@ -23,11 +23,6 @@ body{
     padding: 24px 120px;
 }
 
-.logo{
-    font-size: 2rem;
-    font-weight: bold;
-}
-
 .nav-links{
     display: flex;
     list-style: none;
@@ -64,7 +59,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px 120px;
+    padding: 0px 120px;
 }
 
 .booking-widget{
@@ -98,7 +93,7 @@ body{
 }
 
 .tab.active{
-    background:#1976D2;
+    background:#C01920;
     color:white;
 }
 
@@ -119,7 +114,15 @@ body{
 }
 
 .hero-image{
-    width: 50%;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+}
+
+
+.hero-image img{
+     width:90%;
+     max-width:650px;
 }
 
 .hero h2{
@@ -135,16 +138,17 @@ body{
 .btn-primary{
     display: inline-block;
     padding: 16px 36px;
-    background: #1976D2;
+    background: #C01920;
     color: white;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
     transition: 0.3s;
+    box-shadow:0 10px 25px rgba(25,118,210,.25);
 }
 
 .btn-primary:hover{
-    background: #1565c0;
+    background: #A0151B;
 }
 
 .form-row{
@@ -179,7 +183,7 @@ body{
 .form-group input:focus,
 .form-group select:focus{
 
-    border-color:#1976D2;
+    border-color:#C01920;
 
 }
 
@@ -419,3 +423,264 @@ body{
     color:#666;
 }
 
+.contact{
+
+    padding:100px 120px;
+
+    background:#f8fafc;
+
+}
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+}
+
+.contact-card{
+
+    background:#fff;
+    padding:36px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+
+    text-decoration:none;
+    color:inherit;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:320px;
+
+}
+
+.contact-icon{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.contact-card h3{
+
+    margin-bottom:12px;
+
+    font-size:22px;
+
+}
+
+.contact-card p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    max-width:220px;
+
+    margin:0 auto;
+
+}
+
+.contact-card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.contact-icon{
+
+    font-size:40px;
+
+    color:#C01920;
+
+    margin-bottom:20px;
+
+}
+
+.map-card{
+
+    background:#fff;
+
+    padding:36px;
+
+    margin-top: 30px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.map-container{
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.10);
+
+}
+
+.map-container iframe{
+
+    width:100%;
+
+    height:500px;
+
+    border:none;
+
+    display:block;
+
+}
+
+.footer{
+
+    background:#58090d;
+
+    color:#fff;
+
+    padding:70px 120px 30px;
+
+}
+
+.footer-brand{
+
+    flex:2;
+
+}
+
+.footer-brand img{
+
+    width:260px;
+
+    margin-bottom:24px;
+
+}
+
+.logo img{
+    height:70px;
+    width:auto;
+    display:block;
+}
+
+.footer-brand p{
+
+    color:#e1cbcb;
+
+    line-height:1.8;
+
+    max-width:600px;
+
+}
+
+
+.footer-social{
+
+    flex:1;
+
+}
+
+.footer-social h3{
+
+    font-size:26px;
+
+    margin-bottom:24px;
+
+}
+
+.footer-social{
+
+    flex:1;
+
+}
+
+.footer-social h3{
+
+    margin-bottom:20px;
+
+}
+
+.social-icons a{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:22px;
+
+    transition: transform .3s ease;
+
+
+
+}
+
+.social-icons a:hover{
+
+    background:#C01920;
+
+    transform:translateY(-6px) scale(1.08);
+
+}
+
+.footer-bottom{
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+    padding-top:24px;
+
+    text-align:center;
+
+    color:#b89494;
+
+    font-size: 12px;
+
+}
+
+.footer-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:80px;
+
+    margin-bottom:40px;
+
+}
+
+.social-icons{
+
+    display:flex;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+}
