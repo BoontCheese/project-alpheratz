@@ -23,6 +23,12 @@ body{
     padding: 24px 120px;
 }
 
+.menu-toggle{
+
+    display:none;
+
+}
+
 .nav-links{
     display: flex;
     list-style: none;
@@ -682,5 +688,316 @@ body{
     gap:16px;
 
     flex-wrap:wrap;
+
+}
+
+/* ==========================================
+   TABLET (992px and below)
+========================================== */
+@media (max-width:992px){
+
+    /* ---------- Layout ---------- */
+
+    .navbar{
+        padding:20px 40px;
+    }
+
+    .hero,
+    .booking-widget,
+    .services,
+    .destinations,
+    .testimonials,
+    .youtube,
+    .contact,
+    .footer{
+        padding-left:40px;
+        padding-right:40px;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hero{
+        gap:40px;
+    }
+
+    /* ---------- Destinations ---------- */
+
+    .destination-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    /* ---------- Testimonial ---------- */
+
+    .testimonial-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .testimonial-stats{
+        display:flex;
+        justify-content:space-around;
+        width:100%;
+    }
+
+    /* ---------- Contact ---------- */
+
+    .contact-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    /* ---------- Footer ---------- */
+
+    .footer-content{
+        gap:40px;
+    }
+
+}
+
+/* ==========================================
+   MOBILE (768px and below)
+========================================== */
+@media (max-width:768px){
+
+    /* ---------- Layout ---------- */
+
+    .menu-toggle{
+
+        display:block;
+        border:none;
+        background:none;
+        font-size:28px;
+        cursor:pointer;
+        color:#333;
+
+    }
+
+    .mobile-menu.active{
+
+        display:flex;
+
+    }
+
+    .navbar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .nav-links{
+        display: none;
+    }
+
+    .auth-buttons{
+        display: none;
+    }
+
+    .hero,
+    .booking-widget,
+    .services,
+    .destinations,
+    .testimonials,
+    .youtube,
+    .contact,
+    .footer{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:30px;
+    }
+
+    .hero-content{
+        width:100%;
+    }
+
+    .hero-image{
+        justify-content:center;
+    }
+
+    .hero-image img{
+        width:100%;
+        max-width:250px;
+    }
+
+    .hero h2{
+        font-size:32px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    /* ---------- Booking ---------- */
+
+    .booking-tabs{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .tab{
+        min-height:60px;
+        font-size:14px;
+    }
+
+    .form-row{
+        flex-direction:column;
+        gap:16px;
+    }
+
+    /* ---------- Services ---------- */
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* ---------- Destinations ---------- */
+
+    .destination-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* ---------- Testimonial ---------- */
+
+    .testimonial-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .testimonial-video iframe{
+        height:280px;
+    }
+
+    .testimonial-stats{
+        display:flex;
+        justify-content:space-around;
+        width:100%;
+    }
+
+    /* ---------- Youtube ---------- */
+
+    .youtube-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* ---------- Contact ---------- */
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-card{
+
+        min-height:auto;
+        padding:24px;
+
+    }
+
+    /* ---------- Map ---------- */
+
+    .map-container iframe{
+
+        height:300px;
+
+    }
+
+    .map-card{
+
+        padding:20px;
+
+    }
+
+    /* ---------- Footer ---------- */
+
+    .footer{
+        padding:50px 20px 20px;
+    }
+
+    .footer-social{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .footer-content{
+        flex-direction:column;
+        text-align:center;
+        gap:30px;
+    }
+
+    .social-icons{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:16px;
+        flex-wrap:wrap;
+    }
+
+}
+
+.mobile-menu{
+
+    display:flex;
+    flex-direction:column;
+
+    position:fixed;
+
+    top:90px;
+    left:0;
+    right:0;
+
+    background:#fff;
+
+    padding:30px;
+
+    gap:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.10);
+
+    /* Hidden state */
+    opacity:0;
+    transform:translateY(-20px);
+    visibility:hidden;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease,
+        visibility .3s;
+}
+
+.mobile-menu.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    visibility:visible;
+
+}
+
+.mobile-menu a{
+
+    text-decoration:none;
+
+    color:#333;
+
+    font-weight:600;
+
+}
+
+.navbar{
+
+    position:relative;
+    z-index:1001;
+}
+
+body.menu-open{
+
+    overflow:hidden;
 
 }

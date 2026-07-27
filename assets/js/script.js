@@ -72,3 +72,26 @@ tabs.forEach(function(tab){
     });
 
 });
+
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const menuIcon = document.querySelector(".menu-toggle i");
+
+menuToggle.addEventListener("click", function(){
+
+    mobileMenu.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+
+    if (mobileMenu.classList.contains("active")){
+
+        menuIcon.classList.remove("fa-bars");
+        menuIcon.classList.add("fa-xmark");
+
+    }else{
+
+        menuIcon.classList.remove("fa-xmark");
+        menuIcon.classList.add("fa-bars");
+
+    }
+
+});
