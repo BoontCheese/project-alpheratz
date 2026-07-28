@@ -8,9 +8,15 @@ const observer = new IntersectionObserver(function(entries){
 
             entry.target.classList.add("show");
 
+            setTimeout(function(){
+
+            entry.target.style.transitionDelay = "0ms";
+
+            }, 800);
+
             observer.unobserve(entry.target);
 
-        }
+    }
 
     });
 
@@ -23,25 +29,11 @@ reveals.forEach(function(section){
 
 });
 
-const serviceCards = document.querySelectorAll(".service-card");
+const cards = document.querySelectorAll(
+    ".service-card, .destination-card, .youtube-card"
+);
 
-serviceCards.forEach(function(card, index){
-
-    card.style.transitionDelay = `${index * 100}ms`;
-
-});
-
-const destinationCards = document.querySelectorAll(".destination-card");
-
-destinationCards.forEach(function(card, index){
-
-    card.style.transitionDelay = `${index * 100}ms`;
-
-});
-
-const youtubeCards = document.querySelectorAll(".youtube-card");
-
-youtubeCards.forEach(function(card, index){
+cards.forEach(function(card, index){
 
     card.style.transitionDelay = `${index * 100}ms`;
 
@@ -91,6 +83,69 @@ menuToggle.addEventListener("click", function(){
 
         menuIcon.classList.remove("fa-xmark");
         menuIcon.classList.add("fa-bars");
+
+    }
+
+});
+
+const mobileLinks = document.querySelectorAll(".mobile-menu a");
+mobileLinks.forEach(function(link){
+    link.addEventListener("click", function(){
+        mobileMenu.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuIcon.classList.remove("fa-xmark");
+        menuIcon.classList.add("fa-bars");  
+    })
+})
+
+const counters = document.querySelectorAll(".passenger-counter");
+
+counters.forEach(function(counter){
+
+    const minus = counter.querySelector(".minus");
+    const plus = counter.querySelector(".plus");
+    const value = counter.querySelector(".counter-value");
+
+    let count = Number(value.textContent);
+
+    const min = Number(value.dataset.min);
+    const max = Number(value.dataset.max);
+
+    updateButtons();
+
+    plus.addEventListener("click", function(){
+
+        if(count < max){
+
+            count++;
+
+            value.textContent = count;
+
+            updateButtons();
+
+        }
+
+    });
+
+    minus.addEventListener("click", function(){
+
+        if(count > min){
+
+            count--;
+
+            value.textContent = count;
+
+            updateButtons();
+
+        }
+
+    });
+
+    function updateButtons(){
+
+        minus.disabled = count === min;
+
+        plus.disabled = count === max;
 
     }
 

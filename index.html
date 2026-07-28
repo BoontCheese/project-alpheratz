@@ -226,18 +226,56 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="tour-adults">Total Dewasa</label>
-                                <input id="tour-adults" name="adult" type="number" min="0">
-                            </div>
+                            
+                                <div class="passenger-counter">
+                                    <button class="counter-btn minus" type="button" aria-label="Decrease adults">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+
+                                    <span class="counter-value" data-min="1" data-max="5">0</span>
+
+                                    <button class="counter-btn plus" type="button" aria-label="Increase adults">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+
+                                    <!-- Hidden input to hold the value for form submit -->
+                                    <input type="hidden" id="tour-adults" name="adult" value="0">
+                                </div>
+                        
 
                             <div class="form-group">
                                 <label for="tour-childs">Total Anak</label>
-                                <input id="tour-childs" name="child" type="number" min="0">
-                            </div>
+                                <div class="passenger-counter">
+                                    <button class="counter-btn minus" type="button" aria-label="Decrease children">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+
+                                    <span class="counter-value" data-min="0" data-max="5">0</span>
+
+                                    <button class="counter-btn plus" type="button" aria-label="Increase children">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+
+                                    <!-- Hidden input to hold the value for form submit -->
+                                    <input type="hidden" id="tour-childrens" name="children" value="0">
+                                </div>
 
                             <div class="form-group">
                                 <label for="tour-infants">Total Bayi</label>
-                                <input id="tour-infants" name="infant" type="number" min="0">
-                            </div>
+                                <div class="passenger-counter">
+                                    <button class="counter-btn minus" type="button" aria-label="Decrease infants">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+
+                                    <span class="counter-value" data-min="0" data-max="5">0</span>
+
+                                    <button class="counter-btn plus" type="button" aria-label="Increase infants">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+
+                                    <!-- Hidden input to hold the value for form submit -->
+                                    <input type="hidden" id="tour-infants" name="infant" value="0">
+                                </div>
 
                         </div>
 

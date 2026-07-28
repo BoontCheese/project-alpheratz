@@ -36,6 +36,30 @@ body{
     
 }
 
+nav a{
+    position:relative;
+    text-decoration:none;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+
+    left:0;
+    bottom:-5px;
+
+    width:0;
+    height:2px;
+
+    background:#C01920;
+
+    transition:width .3s ease;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
 .nav-links a{
     text-decoration: none;
     color: #333;
@@ -45,7 +69,7 @@ body{
 }
 
 .nav-links a:hover{
-    color: #0077ff;
+    color: #a8161c;
 }
 
 .auth-buttons{
@@ -59,6 +83,10 @@ body{
     font-weight: 600;
 
      transition:0.3s;
+}
+
+.auth-buttons a:hover{
+    color:#a8161c;
 }
 
 .hero{
@@ -98,9 +126,89 @@ body{
     transition:.3s;
 }
 
+.tab:hover{
+    background: #5d0c0e;
+    color: white;
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.15);
+}
+
 .tab.active{
     background:#C01920;
     color:white;
+    transform:translateY(0);
+}
+
+.passenger-counter{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    padding:8px 12px;
+
+    height:52px;
+
+}
+
+.counter-btn{
+
+    width:36px;
+    height:36px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#C01920;
+    color:white;
+
+    cursor:pointer;
+
+    transition:
+        background .3s ease,
+        transform .2s ease;
+
+}
+
+.counter-btn:hover{
+
+    background:#a8161c;
+
+    transform:translateY(-2px);
+
+}
+
+.counter-btn:active{
+
+    transform:scale(.95);
+
+}
+
+.counter-btn:disabled{
+
+    background:#ccc;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+.counter-value{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    min-width:40px;
+
+    text-align:center;
+
 }
 
 .flight-form{
@@ -154,7 +262,10 @@ body{
 }
 
 .btn-primary:hover{
-    background: #A0151B;
+    background: #a8161c;
+    transform:translateY(-3px);
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.15);
 }
 
 .form-row{
@@ -217,6 +328,7 @@ body{
     gap:30px;
 }
 
+
 @media (max-width:992px){
 
     .service-grid{
@@ -242,10 +354,6 @@ body{
     transition:all .3s ease;
 }
 
-.service-card:hover{
-    transform:translateY(-8px);
-}
-
 .service-icon{
     font-size:48px;
     margin-bottom:20px;
@@ -269,9 +377,10 @@ body{
     transition:all .3s ease;
 }
 
-.service-card:hover{
+.service-card.reveal.show:hover{
     transform:translateY(-8px);
     box-shadow:0 20px 40px rgba(0,0,0,.12);
+    
 }
 
 .destinations{
@@ -295,7 +404,7 @@ body{
         box-shadow .3s ease;
 } 
 
-.destination-card:hover{
+.destination-card.reveal.show:hover{
     transform:translateY(-8px);
     box-shadow:0 20px 40px rgba(0,0,0,.12);
 }
@@ -617,6 +726,17 @@ body{
 
 }
 
+.social a{
+    transition:
+        transform .2s ease,
+        color .2s ease;
+}
+
+.social a:hover{
+    transform:translateY(-3px);
+    color:#C01920;
+}
+
 .social-icons a{
 
     width:48px;
@@ -922,12 +1042,21 @@ body{
         display:flex;
         flex-direction:column;
         align-items:center;
+        flex: 1;
+    }
+
+    .footer-brand{
+
+        width:100%;
     }
 
     .footer-content{
+
         flex-direction:column;
+        align-items:center;
         text-align:center;
         gap:30px;
+
     }
 
     .social-icons{
@@ -945,39 +1074,31 @@ body{
     display:flex;
     flex-direction:column;
 
-    position:fixed;
-
-    top:90px;
+    position:absolute;
+    top:100%;
     left:0;
     right:0;
 
-    background:#fff;
-
-    padding:30px;
-
+    background:white;
+    padding:20px;
     gap:20px;
 
-    box-shadow:0 15px 35px rgba(0,0,0,.10);
-
-    /* Hidden state */
     opacity:0;
     transform:translateY(-20px);
-    visibility:hidden;
 
     transition:
         opacity .3s ease,
-        transform .3s ease,
-        visibility .3s;
+        transform .3s ease;
+
+    pointer-events:none;
 }
 
 .mobile-menu.active{
 
     opacity:1;
-
     transform:translateY(0);
 
-    visibility:visible;
-
+    pointer-events:auto;
 }
 
 .mobile-menu a{
@@ -1001,3 +1122,42 @@ body.menu-open{
     overflow:hidden;
 
 }
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition:
+        background-color .3s ease,
+        transform .2s ease,
+        box-shadow .3s ease;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.15);
+}
+
+.btn:active{
+    transform:translateY(0);
+}
+
+.btn:focus-visible{
+    outline:3px solid #ffffff;
+    outline-offset:3px;
+}
+
+
