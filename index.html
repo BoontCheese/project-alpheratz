@@ -21,13 +21,13 @@
 
             </h1>
 
-            <ul class="nav-links">
-                <li><a href="">Tiket Pesawat</a></li>
-                <li><a href="#">Hotel</a></li>
-                <li><a href="#">Paket Wisata</a></li>
-                <li><a href="#">Sewa Mobil</a></li>
-                <li><a href="#">Promo</a></li>
-                <li><a href="#">Kontak</a></li>
+            <ul   ul class="nav-links">
+                <li><a href="#booking" data-tab="flight">Tiket Pesawat</a></li>
+                <li><a href="#booking" data-tab="hotel">Hotel</a></li>
+                <li><a href="#booking" data-tab="tour">Paket Wisata</a></li>
+                <li><a href="#booking" data-tab="car">Sewa Mobil</a></li>
+                <li><a href="pages/promo.html">Promo</a></li>
+                <li><a href="#contact" class="nav-contact-link">Kontak</a></li>
             </ul>
 
             <div class="auth-buttons">
@@ -42,13 +42,12 @@
 
             <div class="mobile-menu">
 
-                <a href="#">Tiket Pesawat</a>
-                <a href="#">Hotel</a>
-                <a href="#">Paket Wisata</a>
-                <a href="#">Sewa Mobil</a>
-                <a href="#">Promo</a>
-                <a href="#">Kontak</a>
-
+                <a href="#booking" data-tab="flight">Tiket Pesawat</a></li>
+                <a href="#booking" data-tab="hotel">Hotel</a></li>
+                <a href="#booking" data-tab="tour">Paket Wisata</a></li>
+                <a href="#booking" data-tab="car">Sewa Mobil</a></li>
+                <a href="pages/promo.html">Promo</a></li>
+                <a href="#contact" class="nav-contact-link">Kontak</a></li>
                 <hr>
 
                 <a href="#">Masuk</a>
@@ -120,30 +119,37 @@
                 <div class="booking-content">
 
                     <form class="booking-form flight-form active" id="flight-form">
-                        <!-- Flight Form -->
-                        <div class="form-row">
+                        <div class="form-row swap-row">
                             <div class="form-group">
-                                <label for="flight-from">Dari</label>
-                                <input id="flight-from" name="from" type="text" placeholder="Contoh: Jakarta">
+                                <label for="flight-from"><i class="fa-solid fa-plane-departure"></i> Dari</label>
+                                <input id="flight-from" name="from" type="text" placeholder="Contoh: Jakarta (CGK)"
+                                    required>
+                            </div>
+
+                            <!-- Swap Button -->
+                            <div class="swap-container">
+                                <button type="button" class="btn-swap" id="swap-flight-btn" aria-label="Swap locations">
+                                    ⇄
+                                </button>
                             </div>
 
                             <div class="form-group">
-                                <label for="flight-to">Ke</label>
-                                <input id="flight-to" name="to" type="text" placeholder="Contoh: Surabaya">
+                                <label for="flight-to"><i class="fa-solid fa-plane-arrival"></i> Ke</label>
+                                <input id="flight-to" name="to" type="text" placeholder="Contoh: Surabaya (SUB)"
+                                    required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="flight-departure">Tanggal Berangkat</label>
-                                <input id="flight-departure" name="departure_date" type="date">
+                                <input id="flight-departure" name="departure_date" type="date" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="flight-return">Tanggal Kembali</label>
                                 <input id="flight-return" name="return_date" type="date">
                             </div>
-
 
                             <div class="form-group">
                                 <label for="flight-pax">Penumpang</label>
@@ -157,7 +163,7 @@
                         </div>
 
                         <button type="submit" class="btn-primary">
-                            Cari Tiket
+                            <i class="fa-solid fa-magnifying-glass"></i> Cari Tiket
                         </button>
                     </form>
 
@@ -199,7 +205,6 @@
                                     <option>4 Kamar</option>
                                 </select>
                             </div>
-
                         </div>
 
                         <button type="submit" class="btn-primary">
@@ -220,28 +225,25 @@
                                 <label for="tour-date">Tanggal Liburan Anda</label>
                                 <input id="tour-date" name="date" type="date">
                             </div>
-
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="tour-adults">Total Dewasa</label>
-                            
                                 <div class="passenger-counter">
                                     <button class="counter-btn minus" type="button" aria-label="Decrease adults">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
 
-                                    <span class="counter-value" data-min="1" data-max="5">0</span>
+                                    <span class="counter-value" data-min="1" data-max="5">1</span>
 
                                     <button class="counter-btn plus" type="button" aria-label="Increase adults">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
 
-                                    <!-- Hidden input to hold the value for form submit -->
-                                    <input type="hidden" id="tour-adults" name="adult" value="0">
+                                    <input type="hidden" id="tour-adults" name="adult" value="1">
                                 </div>
-                        
+                            </div>
 
                             <div class="form-group">
                                 <label for="tour-childs">Total Anak</label>
@@ -256,9 +258,9 @@
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
 
-                                    <!-- Hidden input to hold the value for form submit -->
                                     <input type="hidden" id="tour-childrens" name="children" value="0">
                                 </div>
+                            </div>
 
                             <div class="form-group">
                                 <label for="tour-infants">Total Bayi</label>
@@ -273,11 +275,10 @@
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
 
-                                    <!-- Hidden input to hold the value for form submit -->
                                     <input type="hidden" id="tour-infants" name="infant" value="0">
                                 </div>
-
-                        </div>
+                            </div> <!-- Added missing closing tag -->
+                        </div> <!-- Added missing closing tag for form-row -->
 
                         <button type="submit" class="btn-primary">
                             Cari Paket Wisata
@@ -285,23 +286,29 @@
                     </form>
 
                     <form class="booking-form car-form" id="car-form">
-                        <!-- Car Form -->
-                        <div class="form-row">
+                        <div class="form-row swap-row">
                             <div class="form-group">
-                                <label for="car-from">Kota Asal</label>
-                                <input id="car-from" name="from" type="text" placeholder="Contoh : Surabaya">
+                                <label for="car-from"><i class="fa-solid fa-location-dot"></i> Kota Asal</label>
+                                <input id="car-from" name="from" type="text" placeholder="Contoh: Surabaya">
+                            </div>
+
+                            <!-- Swap Button -->
+                            <div class="swap-container">
+                                <button type="button" class="btn-swap" id="swap-car-btn" aria-label="Swap locations">
+                                    ⇄
+                                </button>
                             </div>
 
                             <div class="form-group">
-                                <label for="car-to">Kota Tujuan</label>
-                                <input id="car-to" name="to" type="text" placeholder="Contoh : Malang">
+                                <label for="car-to"><i class="fa-solid fa-location-dot"></i> Kota Tujuan</label>
+                                <input id="car-to" name="to" type="text" placeholder="Contoh: Malang">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="car-unit">Jenis Unit</label>
-                                <input id="car-unit" name="unit" type="text" placeholder="Contoh : Hiace">
+                                <input id="car-unit" name="unit" type="text" placeholder="Contoh: Hiace / Innova">
                             </div>
 
                             <div class="form-group">
@@ -313,15 +320,12 @@
                                 <label for="car-end">Tanggal Berakhir Sewa</label>
                                 <input id="car-end" name="end" type="date">
                             </div>
-
                         </div>
 
                         <button type="submit" class="btn-primary">
-                            Cari Sewa Kendaraan
+                            <i class="fa-solid fa-magnifying-glass"></i> Cari Sewa Kendaraan
                         </button>
                     </form>
-
-
                 </div>
 
             </div>
@@ -551,19 +555,23 @@
             </div>
 
             <article class="testimonial-card reveal">
-                
+
                 <div class="testimonial-content">
 
                     <h3>Dipercaya oleh Ratusan Pelanggan sejak 2009</h3>
 
-                    <p>Dengarkan pengalaman nyata pelanggan yang telah mempercayakan perjalanan mereka bersama Starlink Tour.</p>
+                    <p>Dengarkan pengalaman nyata pelanggan yang telah mempercayakan perjalanan mereka bersama Starlink
+                        Tour.</p>
 
                 </div>
 
                 <div class="testimonial-video">
 
-                    <iframe
-                        width="315" height="576" src="https://www.youtube.com/embed/hA3c7GoeU_M" title="yuk yuk liburan bareng starlink  #bromotrip #liburan #familygathering #gatheringperusahaan #trip" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                    <iframe width="315" height="576" src="https://www.youtube.com/embed/hA3c7GoeU_M"
+                        title="yuk yuk liburan bareng starlink  #bromotrip #liburan #familygathering #gatheringperusahaan #trip"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
 
                 </div>
@@ -607,9 +615,8 @@
                 <article class="youtube-card reveal">
 
                     <iframe src="https://www.youtube.com/embed/XvI51-8ByBk"
-                            title="FAMILY GATHERING KELUARGA SIRAIT GOES TO BALI 13-17 MEI 2026"
-                            frameborder="0"
-                            allowfullscreen>
+                        title="FAMILY GATHERING KELUARGA SIRAIT GOES TO BALI 13-17 MEI 2026" frameborder="0"
+                        allowfullscreen>
                     </iframe>
 
                     <div class="youtube-content">
@@ -627,9 +634,8 @@
                 <article class="youtube-card reveal">
 
                     <iframe src="https://www.youtube.com/embed/7DR-ODsxEH8"
-                            title="FAMILY GATHERING BPN KALTENG TO SINGAPORE MALAYSIA BERSAMA STARLINK"
-                            frameborder="0"
-                            allowfullscreen>
+                        title="FAMILY GATHERING BPN KALTENG TO SINGAPORE MALAYSIA BERSAMA STARLINK" frameborder="0"
+                        allowfullscreen>
                     </iframe>
 
                     <div class="youtube-content">
@@ -646,10 +652,9 @@
 
                 <article class="youtube-card reveal">
 
-                    <iframe src="https://www.youtube.com/embed/td6X_nbXsZY" 
-                            title="REUNI ALUMNI STPN ANGKATAN 96 - Back Together And It Feels So Good"
-                            frameborder="0"
-                            allowfullscreen>
+                    <iframe src="https://www.youtube.com/embed/td6X_nbXsZY"
+                        title="REUNI ALUMNI STPN ANGKATAN 96 - Back Together And It Feels So Good" frameborder="0"
+                        allowfullscreen>
                     </iframe>
 
                     <div class="youtube-content">
@@ -667,9 +672,8 @@
                 <article class="youtube-card reveal">
 
                     <iframe src="https://www.youtube.com/embed/tBsJnen61po"
-                            title="Family Gathering Goes to Bromo &amp; Batu Mikutopia with Starlink"
-                            frameborder="0"
-                            allowfullscreen>
+                        title="Family Gathering Goes to Bromo &amp; Batu Mikutopia with Starlink" frameborder="0"
+                        allowfullscreen>
                     </iframe>
 
                     <div class="youtube-content">
@@ -685,7 +689,7 @@
             </div>
         </section>
 
-        <section class="contact reveal">
+        <section id="contact" class="contact reveal">
 
             <div class="section-title">
                 <h2>
@@ -699,7 +703,7 @@
 
             <div class="contact-grid">
 
-                <a href="https://share.google/AiRnPGO98JrKMKg14"class="contact-card">
+                <a href="https://share.google/AiRnPGO98JrKMKg14" class="contact-card">
 
                     <div class="contact-icon">
                         <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
@@ -737,7 +741,8 @@
 
                 </a>
 
-                <a href="https://api.whatsapp.com/send/?phone=6282199812234&text&type=phone_number&app_absent=0" class="contact-card">
+                <a href="https://api.whatsapp.com/send/?phone=6282199812234&text&type=phone_number&app_absent=0"
+                    class="contact-card">
 
                     <div class="contact-icon">
                         <i class="fa-brands fa-whatsapp"></i>
@@ -750,9 +755,9 @@
 
             </div>
 
-        
 
-        
+
+
 
             <article class="map-card reveal">
 
@@ -762,11 +767,14 @@
                     Kami siap menyambut Anda secara langsung di kantor kami.
                 </p>
 
-            
+
 
                 <div class="map-container">
 
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.073093412125!2d112.72509600845835!3d-7.345689192632396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb4d90b56101%3A0x86e24021f0c1edb9!2sStarlink%20Tour%20%26%20Travel!5e0!3m2!1sen!2sid!4v1784962949972!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.073093412125!2d112.72509600845835!3d-7.345689192632396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb4d90b56101%3A0x86e24021f0c1edb9!2sStarlink%20Tour%20%26%20Travel!5e0!3m2!1sen!2sid!4v1784962949972!5m2!1sen!2sid"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
                 </div>
 
@@ -776,53 +784,64 @@
 
     </main>
 
+    <a href="https://wa.me/6282199812234?text=Halo%20Admin,%20saya%20ingin%20tanya%20promo%20tour" class="whatsapp-float" target="_blank" aria-label="Chat via WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <footer class="footer">
 
-    <div class="footer-content">
+        <div class="footer-content">
 
-        <div class="footer-brand">
+            <div class="footer-brand">
 
-            <img src="assets/images/starlinkLogoWhite.png" alt="Logo Starlink Putih">
+                <img src="assets/images/starlinkLogoWhite.png" alt="Logo Starlink Putih">
 
-            <p>
-                Starlink Tour & Travel merupakan perusahaan jasa perjalanan wisata terpercaya sejak 2009. Kami siap membantu perjalanan wisata, gathering, study tour, hingga perjalanan bisnis Anda.
-            </p>
+                <p>
+                    Starlink Tour & Travel merupakan perusahaan jasa perjalanan wisata terpercaya sejak 2009. Kami siap
+                    membantu perjalanan wisata, gathering, study tour, hingga perjalanan bisnis Anda.
+                </p>
 
-        </div>
+            </div>
 
-        <div class="footer-social">
+            <div class="footer-social">
 
-            <h3>Ikuti Kami</h3>
+                <h3>Ikuti Kami</h3>
 
-            <div class="social-icons">
+                <div class="social-icons">
 
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
 
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
 
-                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
 
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
 
-                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+
+                </div>
 
             </div>
 
         </div>
 
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Starlink Tour & Travel. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loading-text">Mencari data perjalanan terbaik...</p>
     </div>
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 Starlink Tour & Travel. All Rights Reserved.
-        </p>
-
-    </div>
-
-</footer>
 
     <script src="assets/js/script.js"> </script>
+
 </body>
 
 </html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo Paket Tour - Limited Deals</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/promo.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="../assets/images/LOGO STARLINK POLISH" alt="Logo Starlink Tour and Travel">
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Beranda</a></li>
+            <li>
+                <button class="admin-login-btn" id="adminLoginBtn" onclick="toggleAdminLogin()">
+                    <i class="fa-solid fa-lock"></i> Admin Sign In
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="promo-hero">
+        <h1>Promo Spesial Paket Tour</h1>
+        <p>Temukan penawaran terbaik untuk liburan impian Anda</p>
+    </section>
+
+    <!-- CATEGORY FILTER TABS -->
+    <div class="category-tabs">
+        <button class="tab-btn active" onclick="filterTours('all')">Semua Promo</button>
+        <button class="tab-btn" onclick="filterTours('domestic')">Domestik</button>
+        <button class="tab-btn" onclick="filterTours('international')">Mancanegara</button>
+    </div>
+
+    <!-- ADMIN CONTROL BAR -->
+    <div class="admin-bar" id="adminBar">
+        <div>
+            <i class="fa-solid fa-user-shield"></i> <strong>Admin Mode Active</strong> — Anda dapat mengubah konten promo secara langsung.
+        </div>
+        <div class="admin-actions">
+            <button class="btn-admin btn-add" onclick="addNewCard()"><i class="fa-solid fa-plus"></i> Tambah Promo</button>
+            <button class="btn-admin btn-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+        </div>
+    </div>
+
+    <!-- PROMO CARDS CONTAINER -->
+    <main class="promo-container">
+        <div class="promo-grid" id="promoGrid">
+            
+            <!-- TOUR CARD 1: DOMESTIC -->
+            <article class="promo-card" data-category="domestic">
+                <div class="card-img-wrapper">
+                    <span class="badge-category">Domestik</span>
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80" alt="Bali Tour" class="card-img">
+                    <label class="admin-img-upload">
+                        <i class="fa-solid fa-camera"></i> Ubah Gambar
+                        <input type="file" hidden accept="image/*" onchange="updateCardImage(this)">
+                    </label>
+                </div>
+                <div class="card-body">
+                    <span class="editable-text destination-title">Exotic Bali 4D3N</span>
+                    <input type="text" class="admin-edit-field" value="Exotic Bali 4D3N">
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="editable-text">Hotel: Grand Inna Kuta (★4)</span>
+                        <input type="text" class="admin-edit-field" value="Hotel: Grand Inna Kuta (★4)">
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span class="editable-text">Periode: 1 Agu - 30 Sep 2026</span>
+                        <input type="text" class="admin-edit-field" value="Periode: 1 Agu - 30 Sep 2026">
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="editable-text">Ketersediaan: 12 Seat Lagi</span>
+                        <input type="text" class="admin-edit-field" value="Ketersediaan: 12 Seat Lagi">
+                    </div>
+
+                    <div class="price-tag">
+                        <span class="editable-text">Rp 3.250.000 /pax</span>
+                        <input type="text" class="admin-edit-field" value="Rp 3.250.000 /pax">
+                    </div>
+
+                    <div class="itinerary-preview">
+                        <strong>Itinerary Singkat:</strong>
+                        <p class="editable-text">D1: Arrival & Uluwatu | D2: Bedugul & Tanah Lot | D3: Nusa Penida | D4: Souvenir & Departure</p>
+                        <textarea class="admin-edit-field">D1: Arrival & Uluwatu | D2: Bedugul & Tanah Lot | D3: Nusa Penida | D4: Souvenir & Departure</textarea>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-detail" onclick="openDetailModal('Exotic Bali 4D3N', 'Rp 3.250.000')">Lihat Detail & T&C</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- TOUR CARD 2: INTERNATIONAL -->
+            <article class="promo-card" data-category="international">
+                <div class="card-img-wrapper">
+                    <span class="badge-category">Mancanegara</span>
+                    <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" alt="Tokyo Tour" class="card-img">
+                    <label class="admin-img-upload">
+                        <i class="fa-solid fa-camera"></i> Ubah Gambar
+                        <input type="file" hidden accept="image/*" onchange="updateCardImage(this)">
+                    </label>
+                </div>
+                <div class="card-body">
+                    <span class="editable-text destination-title">Japan Autumn in Tokyo 5D4N</span>
+                    <input type="text" class="admin-edit-field" value="Japan Autumn in Tokyo 5D4N">
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="editable-text">Hotel: Sunshine City Prince Hotel (★4)</span>
+                        <input type="text" class="admin-edit-field" value="Hotel: Sunshine City Prince Hotel (★4)">
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span class="editable-text">Periode: 10 Okt - 15 Nov 2026</span>
+                        <input type="text" class="admin-edit-field" value="Periode: 10 Okt - 15 Nov 2026">
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="editable-text">Ketersediaan: 5 Seat Lagi</span>
+                        <input type="text" class="admin-edit-field" value="Ketersediaan: 5 Seat Lagi">
+                    </div>
+
+                    <div class="price-tag">
+                        <span class="editable-text">Rp 14.800.000 /pax</span>
+                        <input type="text" class="admin-edit-field" value="Rp 14.800.000 /pax">
+                    </div>
+
+                    <div class="itinerary-preview">
+                        <strong>Itinerary Singkat:</strong>
+                        <p class="editable-text">D1: Haneda - Asakusa | D2: Mt. Fuji & Lake Kawaguchi | D3: Shibuya & Harajuku | D4: Disneyland | D5: Departure</p>
+                        <textarea class="admin-edit-field">D1: Haneda - Asakusa | D2: Mt. Fuji & Lake Kawaguchi | D3: Shibuya & Harajuku | D4: Disneyland | D5: Departure</textarea>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-detail" onclick="openDetailModal('Japan Autumn Tokyo 5D4N', 'Rp 14.800.000')">Lihat Detail & T&C</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/6282199812234?text=Halo%20Admin,%20saya%20ingin%20tanya%20promo%20tour" class="whatsapp-float" target="_blank" aria-label="Chat via WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- TOUR DETAIL, T&C & PAYMENT MODAL -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeDetailModal()">&times;</button>
+            <h2 id="modalTitle">Detail Tour</h2>
+            <p id="modalPrice" style="color: var(--secondary-color); font-weight: bold; font-size: 1.2rem; margin-top: 0.2rem;"></p>
+
+            <div class="modal-section">
+                <h3><i class="fa-solid fa-file-contract"></i> Syarat & Ketentuan (T&C)</h3>
+                <ul style="padding-left: 1.2rem; margin-top: 0.5rem; font-size: 0.9rem;">
+                    <li>Uang muka (DP) minimal 30% dari total biaya saat pendaftaran.</li>
+                    <li>Pelunasan wajib dilakukan paling lambat H-14 sebelum tanggal keberangkatan.</li>
+                    <li>Pembatalan < H-7 dikenakan pemotongan 100% dari biaya tur.</li>
+                    <li>Harga dapat berubah sewaktu-waktu mengikuti fluktuasi kurs mata uang asing dan ketersediaan tiket/hotel.</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3><i class="fa-solid fa-credit-card"></i> Informasi Transfer Pembayaran</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Pembayaran resmi hanya ditujukan ke rekening perusahaan berikut:</p>
+                <div class="payment-box">
+                    <p><strong>Bank BCA</strong></p>
+                    <p>No. Rekening: <strong>123-456-7890</strong></p>
+                    <p>Atas Nama: <strong>PT Travel Tour Indonesia</strong></p>
+                    <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid #ccc;">
+                    <p><strong>Bank Mandiri</strong></p>
+                    <p>No. Rekening: <strong>987-654-3210</strong></p>
+                    <p>Atas Nama: <strong>PT Travel Tour Indonesia</strong></p>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; text-align: right;">
+                <a id="modalWaBtn" href="#" target="_blank" class="btn-detail" style="display: inline-block; padding: 0.6rem 1.2rem;">
+                    <i class="fa-brands fa-whatsapp"></i> Pesan via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let isAdminLoggedIn = false;
+
+        /* ==========================================
+           1. FILTER TOURS (DOMESTIC / INT / ALL)
+        ========================================== */
+        function filterTours(category) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.promo-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        /* ==========================================
+           2. ADMIN SIGN-IN SYSTEM (SIMULATED)
+        ========================================== */
+        function toggleAdminLogin() {
+            if (isAdminLoggedIn) return;
+
+            const password = prompt("Masukkan Kata Sandi Admin (Demo Password: admin123):");
+            if (password === "admin123") {
+                isAdminLoggedIn = true;
+                document.body.classList.add('admin-mode');
+                document.getElementById('adminBar').classList.add('active');
+                document.getElementById('adminLoginBtn').style.display = 'none';
+                syncInputFieldsToText();
+            } else if (password !== null) {
+                alert("Password Salah!");
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.body.classList.remove('admin-mode');
+            document.getElementById('adminBar').classList.remove('active');
+            document.getElementById('adminLoginBtn').style.display = 'block';
+            syncInputsToDisplay();
+        }
+
+        // Live binding inputs back to view when editing
+        function syncInputsToDisplay() {
+            const cards = document.querySelectorAll('.promo-card');
+            cards.forEach(card => {
+                const fields = card.querySelectorAll('.card-body > div, .card-body > span, .itinerary-preview');
+                fields.forEach(field => {
+                    const textEl = field.querySelector('.editable-text');
+                    const inputEl = field.querySelector('.admin-edit-field');
+                    if (textEl && inputEl) {
+                        textEl.textContent = inputEl.value;
+                    }
+                });
+            });
+        }
+
+        function syncInputFieldsToText() {
+            const cards = document.querySelectorAll('.promo-card');
+            cards.forEach(card => {
+                const fields = card.querySelectorAll('.card-body > div, .card-body > span, .itinerary-preview');
+                fields.forEach(field => {
+                    const textEl = field.querySelector('.editable-text');
+                    const inputEl = field.querySelector('.admin-edit-field');
+                    if (textEl && inputEl) {
+                        inputEl.addEventListener('input', () => {
+                            textEl.textContent = inputEl.value;
+                        });
+                    }
+                });
+            });
+        }
+
+        function updateCardImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = input.closest('.card-img-wrapper').querySelector('.card-img');
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        /* ==========================================
+           3. MODAL LOGIC (T&C & PAYMENT)
+        ========================================== */
+        function openDetailModal(title, price) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalPrice').textContent = price;
+            
+            const waText = encodeURIComponent(`Halo Admin, saya berminat dengan promo: ${title} (${price})`);
+            document.getElementById('modalWaBtn').href = `https://wa.me/6281234567890?text=${waText}`;
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside box
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('detailModal');
+            if (e.target === modal) {
+                closeDetailModal();
+            }
+        });
+    </script>
+</body>
+</html>
