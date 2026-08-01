@@ -978,6 +978,147 @@ nav a:hover::after {
 }
 
 /* ==========================================
+   OUR LOYAL CUSTOMERS SECTION
+========================================== */
+.loyal-customers-section {
+    padding: 60px 0;
+    background-color: var(--bg-light);
+}
+
+.customer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Ensures leftover cards on the last row stay centered */
+    gap: 25px;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+.customer-card {
+    /* Responsive card sizing */
+    flex: 1 1 240px;
+    max-width: 280px; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 24px 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.customer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--primary-color); /* Highlight with primary brand red */
+}
+
+/* Logo Image Container */
+.logo-wrapper {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(10%);
+    opacity: 0.75;
+    transition: all 0.3s ease;
+}
+
+.customer-card:hover .logo-wrapper img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Hidden Description & List Styling */
+.customer-desc {
+    max-height: 0;
+    opacity: 0;
+    overflow-y: auto; /* Adds clean scrollbar if content exceeds max height */
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0;
+    border-top: 1px solid transparent;
+}
+
+/* Custom subtle scrollbar styling */
+.customer-desc::-webkit-scrollbar {
+    width: 4px;
+}
+.customer-desc::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
+}
+
+/* Reveals text smoothly on hover */
+.customer-card:hover .customer-desc {
+    max-height: 750px; /* Increased from 500px to accommodate long lists */
+    opacity: 1;
+    margin-top: 16px;
+    padding-top: 12px;
+    padding-right: 4px; /* Gives room for scrollbar */
+    border-top-color: var(--border-color);
+}
+
+/* Reveals text smoothly on hover */
+.customer-card:hover .customer-desc {
+    max-height: 500px; /* Expands to fit long sub-lists */
+    opacity: 1;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top-color: var(--border-color);
+}
+
+.customer-desc h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    line-height: 1.4;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* Unordered sub-lists styling */
+.customer-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 8px 0 0 0;
+}
+
+.customer-list li {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+/* Bullet icon indicator for sub-items */
+.customer-list li::before {
+    content: "•";
+    color: var(--primary-color); /* Matches primary brand red */
+    font-weight: bold;
+    position: absolute;
+    left: 2px;
+    top: 0;
+}
+
+/* ==========================================
    RESPONSIVE DESIGN BREAKPOINTS
 ========================================== */
 
