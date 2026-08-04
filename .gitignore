@@ -1,2 +1,12 @@
+# Operating System
 .DS_Store
 Thumbs.db
+
+# Node.js
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
