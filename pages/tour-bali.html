@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exotic Bali 4D3N - Detail Paket Tour</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/promo.css">
+    <link rel="stylesheet" href="../assets/css/tour-detail.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="promo.html" class="logo">
+            <img src="../assets/images/LOGO STARLINK POLISHED.png" alt="Logo Starlink">
+        </a>
+        <ul class="nav-links">
+            <li><a href="promo.html"><i class="fa-solid fa-arrow-left"></i> Kembali ke Promo</a></li>
+            <li>
+                <button class="admin-login-btn" id="adminLoginBtn" onclick="toggleAdminLogin()">
+                    <i class="fa-solid fa-lock"></i> Admin Sign In
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ADMIN BAR -->
+    <div class="admin-bar" id="adminBar">
+        <div>
+            <i class="fa-solid fa-user-shield"></i> <strong>Admin Mode Active</strong> — Anda sedang mengubah detail paket ini.
+        </div>
+        <div class="admin-actions">
+            <button class="btn-admin btn-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="tour-detail-container">
+        <header class="detail-header">
+            <div>
+                <h1 class="editable-text">Exotic Bali 4D3N</h1>
+                <input type="text" class="admin-edit-field" value="Exotic Bali 4D3N">
+            </div>
+            
+            <div>
+                <p class="price-highlight editable-text">Rp 3.250.000 /pax</p>
+                <input type="text" class="admin-edit-field" value="Rp 3.250.000 /pax">
+            </div>
+        </header>
+
+        <section class="detail-grid">
+            <!-- Left Side: Itinerary & Included Services -->
+            <div class="detail-main">
+                <div class="card-img-wrapper" style="height: 350px; margin-bottom: 20px; border-radius: 8px;">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80" class="detail-banner card-img" alt="Bali">
+                    <label class="admin-img-upload">
+                        <i class="fa-solid fa-camera"></i> Ubah Gambar Banner
+                        <input type="file" hidden accept="image/*" onchange="updateCardImage(this)">
+                    </label>
+                </div>
+                
+                <h2><i class="fa-solid fa-route"></i> Itinerary Perjalanan</h2>
+                <ul class="itinerary-list" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;">
+                        <span class="editable-text"><strong>Hari 1:</strong> Arrival at Ngurah Rai Airport & Sunset at Uluwatu Temple</span>
+                        <input type="text" class="admin-edit-field" value="Hari 1: Arrival at Ngurah Rai Airport & Sunset at Uluwatu Temple">
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <span class="editable-text"><strong>Hari 2:</strong> Bedugul, Ulun Danu Temple & Sunset at Tanah Lot</span>
+                        <input type="text" class="admin-edit-field" value="Hari 2: Bedugul, Ulun Danu Temple & Sunset at Tanah Lot">
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <span class="editable-text"><strong>Hari 3:</strong> Full Day Nusa Penida Island Tour (Kelingking Beach, Broken Beach)</span>
+                        <input type="text" class="admin-edit-field" value="Hari 3: Full Day Nusa Penida Island Tour (Kelingking Beach, Broken Beach)">
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <span class="editable-text"><strong>Hari 4:</strong> Souvenir Shopping at Krishna & Transfer to Airport</span>
+                        <input type="text" class="admin-edit-field" value="Hari 4: Souvenir Shopping at Krishna & Transfer to Airport">
+                    </li>
+                </ul>
+
+                <h2><i class="fa-solid fa-file-contract"></i> Syarat & Ketentuan (T&C)</h2>
+                <ul class="tc-list" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;">
+                        <span class="editable-text">Uang muka (DP) minimal 30% dari total biaya saat pendaftaran.</span>
+                        <input type="text" class="admin-edit-field" value="Uang muka (DP) minimal 30% dari total biaya saat pendaftaran.">
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <span class="editable-text">Pelunasan wajib dilakukan paling lambat H-14 sebelum tanggal keberangkatan.</span>
+                        <input type="text" class="admin-edit-field" value="Pelunasan wajib dilakukan paling lambat H-14 sebelum tanggal keberangkatan.">
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <span class="editable-text">Pembatalan < H-7 dikenakan pemotongan 100% dari biaya tur.</span>
+                        <input type="text" class="admin-edit-field" value="Pembatalan < H-7 dikenakan pemotongan 100% dari biaya tur.">
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <span class="editable-text">Harga dapat berubah sewaktu-waktu mengikuti fluktuasi kurs mata uang asing dan ketersediaan tiket/hotel.</span>
+                        <input type="text" class="admin-edit-field" value="Harga dapat berubah sewaktu-waktu mengikuti fluktuasi kurs mata uang asing dan ketersediaan tiket/hotel.">
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right Side: Booking & Payment Details -->
+            <aside class="detail-sidebar">
+                <div class="booking-card">
+                    <h3>Informasi Paket</h3>
+                    
+                    <p style="margin-bottom: 8px;">
+                        <i class="fa-solid fa-hotel"></i> <strong>Hotel:</strong> 
+                        <span class="editable-text">Grand Inna Kuta (★4)</span>
+                        <input type="text" class="admin-edit-field" value="Grand Inna Kuta (★4)">
+                    </p>
+
+                    <p style="margin-bottom: 8px;">
+                        <i class="fa-solid fa-calendar-days"></i> <strong>Periode:</strong> 
+                        <span class="editable-text">1 Agu - 30 Sep 2026</span>
+                        <input type="text" class="admin-edit-field" value="1 Agu - 30 Sep 2026">
+                    </p>
+
+                    <p style="margin-bottom: 8px;">
+                        <i class="fa-solid fa-user-check"></i> <strong>Ketersediaan:</strong> 
+                        <span class="editable-text">12 Seat Lagi</span>
+                        <input type="text" class="admin-edit-field" value="12 Seat Lagi">
+                    </p>
+
+                    <hr style="margin: 15px 0;">
+
+                    <h3>Transfer Pembayaran</h3>
+                    <div class="payment-box">
+                        <div class="editable-text">
+                            <p><strong>Bank BCA</strong><br>No. Rek: <strong>123-456-7890</strong><br>a.n. PT Travel Tour Indonesia</p>
+                            <p style="margin-top: 8px;"><strong>Bank Mandiri</strong><br>No. Rek: <strong>987-654-3210</strong><br>a.n. PT Travel Tour Indonesia</p>
+                        </div>
+                        <textarea class="admin-edit-field">Bank BCA: 123-456-7890 (a.n. PT Travel Tour Indonesia)&#10;Bank Mandiri: 987-654-3210 (a.n. PT Travel Tour Indonesia)</textarea>
+                    </div>
+
+                    <a href="https://wa.me/6282199812234?text=Halo%20Admin,%20saya%20ingin%20pesan%20paket%20Exotic%20Bali%204D3N" target="_blank" class="btn-wa-booking">
+                        <i class="fa-brands fa-whatsapp"></i> Pesan via WhatsApp
+                    </a>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="../assets/js/promo.js"></script>
+</body>
+</html>

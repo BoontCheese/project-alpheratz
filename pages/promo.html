@@ -3,28 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promo Paket Tour - Limited Deals</title>
+    <title>Promo Liburan Domestik & Internasional – Paket Tour Limited Deals</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/promo.css">
+    <link rel="icon" type="image/x-icon" href="../assets/images/starlinkFavicon.ico">
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar">
-        <a href="index.html">
-            <img src="../assets/images/LOGO STARLINK POLISH" alt="Logo Starlink Tour and Travel">
-        </a>
-        <ul class="nav-links">
-            <li><a href="../index.html"><i class="fa-solid fa-house"></i> Beranda</a></li>
-            <li>
-                <button class="admin-login-btn" id="adminLoginBtn" onclick="toggleAdminLogin()">
-                    <i class="fa-solid fa-lock"></i> Admin Sign In
-                </button>
-            </li>
-        </ul>
-    </nav>
+<nav class="navbar">
+    <a href="../index.html" class="logo">
+        <img src="../assets/images/LOGO STARLINK POLISHED.png" alt="Logo Starlink">
+    </a>
+    <ul class="nav-links">
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> Beranda</a></li>
+        <li>
+            <button class="admin-login-btn" id="adminLoginBtn" onclick="toggleAdminLogin()">
+                <i class="fa-solid fa-lock"></i> Admin Sign In
+            </button>
+        </li>
+    </ul>
+</nav>
+
+<!-- ADMIN BAR (Must exist on promo.html for script to work) -->
+<div class="admin-bar" id="adminBar">
+    <div>
+        <i class="fa-solid fa-user-shield"></i> <strong>Admin Mode Active</strong>
+    </div>
+    <div class="admin-actions">
+        <button class="btn-admin btn-add" onclick="addNewCard()"><i class="fa-solid fa-plus"></i> Tambah Promo</button>
+        <button class="btn-admin btn-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+    </div>
+</div>
 
     <!-- HERO SECTION -->
     <section class="promo-hero">
@@ -34,9 +46,9 @@
 
     <!-- CATEGORY FILTER TABS -->
     <div class="category-tabs">
-        <button class="tab-btn active" onclick="filterTours('all')">Semua Promo</button>
-        <button class="tab-btn" onclick="filterTours('domestic')">Domestik</button>
-        <button class="tab-btn" onclick="filterTours('international')">Mancanegara</button>
+        <button class="tab-btn active" onclick="filterTours('all', event)">Semua Promo</button>
+        <button class="tab-btn" onclick="filterTours('domestic', event)">Domestik</button>
+        <button class="tab-btn" onclick="filterTours('international', event)">Mancanegara</button>
     </div>
 
     <!-- ADMIN CONTROL BAR -->
@@ -98,7 +110,7 @@
                     </div>
 
                     <div class="card-actions">
-                        <button class="btn-detail" onclick="openDetailModal('Exotic Bali 4D3N', 'Rp 3.250.000')">Lihat Detail & T&C</button>
+                        <a href="tour-bali.html" class="btn-detail">Lihat Detail Paket</a>
                     </div>
                 </div>
             </article>
@@ -147,7 +159,7 @@
                     </div>
 
                     <div class="card-actions">
-                        <button class="btn-detail" onclick="openDetailModal('Japan Autumn Tokyo 5D4N', 'Rp 14.800.000')">Lihat Detail & T&C</button>
+                        <a href="tour-tokyo.html" class="btn-detail">Lihat Detail Paket</a>
                     </div>
                 </div>
             </article>
@@ -160,159 +172,54 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- TOUR DETAIL, T&C & PAYMENT MODAL -->
-    <div class="modal-overlay" id="detailModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeDetailModal()">&times;</button>
-            <h2 id="modalTitle">Detail Tour</h2>
-            <p id="modalPrice" style="color: var(--secondary-color); font-weight: bold; font-size: 1.2rem; margin-top: 0.2rem;"></p>
+    <footer class="footer">
 
-            <div class="modal-section">
-                <h3><i class="fa-solid fa-file-contract"></i> Syarat & Ketentuan (T&C)</h3>
-                <ul style="padding-left: 1.2rem; margin-top: 0.5rem; font-size: 0.9rem;">
-                    <li>Uang muka (DP) minimal 30% dari total biaya saat pendaftaran.</li>
-                    <li>Pelunasan wajib dilakukan paling lambat H-14 sebelum tanggal keberangkatan.</li>
-                    <li>Pembatalan < H-7 dikenakan pemotongan 100% dari biaya tur.</li>
-                    <li>Harga dapat berubah sewaktu-waktu mengikuti fluktuasi kurs mata uang asing dan ketersediaan tiket/hotel.</li>
-                </ul>
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <img src="../assets/images/starlinkLogoWhite.png" alt="Logo Starlink Putih">
+
+                <p>
+                    Starlink Tour & Travel merupakan perusahaan jasa perjalanan wisata terpercaya sejak 2009. Kami siap
+                    membantu perjalanan wisata, gathering, study tour, hingga perjalanan bisnis Anda.
+                </p>
+
             </div>
 
-            <div class="modal-section">
-                <h3><i class="fa-solid fa-credit-card"></i> Informasi Transfer Pembayaran</h3>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Pembayaran resmi hanya ditujukan ke rekening perusahaan berikut:</p>
-                <div class="payment-box">
-                    <p><strong>Bank BCA</strong></p>
-                    <p>No. Rekening: <strong>123-456-7890</strong></p>
-                    <p>Atas Nama: <strong>PT Travel Tour Indonesia</strong></p>
-                    <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid #ccc;">
-                    <p><strong>Bank Mandiri</strong></p>
-                    <p>No. Rekening: <strong>987-654-3210</strong></p>
-                    <p>Atas Nama: <strong>PT Travel Tour Indonesia</strong></p>
+            <div class="footer-social">
+
+                <h3>Ikuti Kami</h3>
+
+                <div class="social-icons">
+
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+
                 </div>
+
             </div>
 
-            <div style="margin-top: 1.5rem; text-align: right;">
-                <a id="modalWaBtn" href="#" target="_blank" class="btn-detail" style="display: inline-block; padding: 0.6rem 1.2rem;">
-                    <i class="fa-brands fa-whatsapp"></i> Pesan via WhatsApp
-                </a>
-            </div>
         </div>
-    </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Starlink Tour & Travel. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
 
     <!-- JAVASCRIPT LOGIC -->
-    <script>
-        let isAdminLoggedIn = false;
-
-        /* ==========================================
-           1. FILTER TOURS (DOMESTIC / INT / ALL)
-        ========================================== */
-        function filterTours(category) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const cards = document.querySelectorAll('.promo-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        /* ==========================================
-           2. ADMIN SIGN-IN SYSTEM (SIMULATED)
-        ========================================== */
-        function toggleAdminLogin() {
-            if (isAdminLoggedIn) return;
-
-            const password = prompt("Masukkan Kata Sandi Admin (Demo Password: admin123):");
-            if (password === "admin123") {
-                isAdminLoggedIn = true;
-                document.body.classList.add('admin-mode');
-                document.getElementById('adminBar').classList.add('active');
-                document.getElementById('adminLoginBtn').style.display = 'none';
-                syncInputFieldsToText();
-            } else if (password !== null) {
-                alert("Password Salah!");
-            }
-        }
-
-        function logoutAdmin() {
-            isAdminLoggedIn = false;
-            document.body.classList.remove('admin-mode');
-            document.getElementById('adminBar').classList.remove('active');
-            document.getElementById('adminLoginBtn').style.display = 'block';
-            syncInputsToDisplay();
-        }
-
-        // Live binding inputs back to view when editing
-        function syncInputsToDisplay() {
-            const cards = document.querySelectorAll('.promo-card');
-            cards.forEach(card => {
-                const fields = card.querySelectorAll('.card-body > div, .card-body > span, .itinerary-preview');
-                fields.forEach(field => {
-                    const textEl = field.querySelector('.editable-text');
-                    const inputEl = field.querySelector('.admin-edit-field');
-                    if (textEl && inputEl) {
-                        textEl.textContent = inputEl.value;
-                    }
-                });
-            });
-        }
-
-        function syncInputFieldsToText() {
-            const cards = document.querySelectorAll('.promo-card');
-            cards.forEach(card => {
-                const fields = card.querySelectorAll('.card-body > div, .card-body > span, .itinerary-preview');
-                fields.forEach(field => {
-                    const textEl = field.querySelector('.editable-text');
-                    const inputEl = field.querySelector('.admin-edit-field');
-                    if (textEl && inputEl) {
-                        inputEl.addEventListener('input', () => {
-                            textEl.textContent = inputEl.value;
-                        });
-                    }
-                });
-            });
-        }
-
-        function updateCardImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = input.closest('.card-img-wrapper').querySelector('.card-img');
-                    img.src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        /* ==========================================
-           3. MODAL LOGIC (T&C & PAYMENT)
-        ========================================== */
-        function openDetailModal(title, price) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalPrice').textContent = price;
-            
-            const waText = encodeURIComponent(`Halo Admin, saya berminat dengan promo: ${title} (${price})`);
-            document.getElementById('modalWaBtn').href = `https://wa.me/6281234567890?text=${waText}`;
-
-            document.getElementById('detailModal').classList.add('active');
-        }
-
-        function closeDetailModal() {
-            document.getElementById('detailModal').classList.remove('active');
-        }
-
-        // Close modal when clicking outside box
-        window.addEventListener('click', (e) => {
-            const modal = document.getElementById('detailModal');
-            if (e.target === modal) {
-                closeDetailModal();
-            }
-        });
-    </script>
+    <script src="../assets/js/promo.js"></script>
 </body>
 </html>

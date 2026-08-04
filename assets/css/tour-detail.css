@@ -1,0 +1,221 @@
+/* ==========================================
+   1. LAYOUT & GRID CONTAINER
+========================================== */
+.tour-detail-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 5%;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color, #e2e8f0);
+}
+
+.detail-header h1 {
+    font-size: 2.2rem;
+    color: var(--text-color, #2d3748);
+}
+
+.price-highlight {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color, #C01920);
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* ==========================================
+   2. MAIN CONTENT (LEFT SIDE)
+========================================== */
+.detail-main h2 {
+    font-size: 1.3rem;
+    color: var(--text-color, #2d3748);
+    margin: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail-main h2 i {
+    color: var(--primary-color, #C01920);
+}
+
+/* Itinerary List */
+.itinerary-list li {
+    background: #ffffff;
+    border-left: 4px solid var(--primary-color, #C01920);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    box-shadow: var(--card-shadow, 0 4px 12px rgba(0, 0, 0, 0.05));
+    transition: transform 0.2s ease;
+}
+
+.itinerary-list li:hover {
+    transform: translateX(4px);
+}
+
+/* Terms & Conditions List */
+.tc-list li {
+    background: #f8fafc;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted, #64748b);
+    border: 1px solid var(--border-color, #e2e8f0);
+}
+
+/* ==========================================
+   3. SIDEBAR & BOOKING CARD (RIGHT SIDE)
+========================================== */
+.detail-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.booking-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow, 0 10px 25px rgba(0, 0, 0, 0.06));
+    border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.booking-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-color, #2d3748);
+}
+
+.booking-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted, #64748b);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.booking-card p i {
+    color: var(--primary-color, #C01920);
+    width: 20px;
+    text-align: center;
+}
+
+.payment-box {
+    background: #f8fafc;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.btn-wa-booking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background-color: #25d366;
+    color: #ffffff !important;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.2s, transform 0.2s;
+    text-decoration: none;
+}
+
+.btn-wa-booking:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   4. ADMIN MODE ADJUSTMENTS FOR DETAILS
+========================================== */
+/* Image upload button styling inside banner */
+.card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Layout tweak when fields switch to input in admin mode */
+.admin-mode .editable-text {
+    display: none !important;
+}
+
+.admin-mode .admin-edit-field {
+    display: block !important;
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    margin-top: 0.3rem;
+    border: 1px dashed var(--primary-color, #C01920);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: #f0f7ff;
+    color: #2d3748;
+}
+
+textarea.admin-edit-field {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Header layout adjustments when inputs appear */
+.admin-mode .detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.admin-mode .detail-header > div {
+    width: 100%;
+}
+
+/* ==========================================
+   5. RESPONSIVE BREAKPOINTS
+========================================== */
+@media (max-width: 992px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-sidebar {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .detail-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .price-highlight {
+        font-size: 1.4rem;
+    }
+}
