@@ -149,3 +149,67 @@ function updateCardImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+const promoGrid = document.getElementById("promoGrid");
+
+fetch("/api/promo")
+  .then((response) => response.json())
+  .then((data) => {
+    // Clear initial static content if necessary
+    promoGrid.innerHTML = "";
+
+    data.forEach((promo) => {
+      const formattedPrice = `Rp ${promo.price.toLocaleString("id-ID")} /pax`;
+
+      promoGrid.innerHTML += `
+        <article class="promo-card" data-category="${promo.categoryKey}">
+            <div class="card-img-wrapper">
+                <span class="badge-category">${promo.category}</span>
+                <img src="${promo.image}" alt="${promo.name}" class="card-img">
+                <label class="admin-img-upload">
+                    <i class="fa-solid fa-camera"></i> Ubah Gambar
+                    <input type="file" hidden accept="image/*" onchange="updateCardImage(this)">
+                </label>
+            </div>
+            <div class="card-body">
+                <span class="editable-text destination-title">${promo.name}</span>
+                <input type="text" class="admin-edit-field" value="${promo.name}">
+
+                <div class="info-item">
+                    <i class="fa-solid fa-hotel"></i>
+                    <span class="editable-text">Hotel: ${promo.hotel}</span>
+                    <input type="text" class="admin-edit-field" value="Hotel: ${promo.hotel}">
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span class="editable-text">Periode: ${promo.period}</span>
+                    <input type="text" class="admin-edit-field" value="Periode: ${promo.period}">
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="editable-text">Ketersediaan: ${promo.seats} Seat Lagi</span>
+                    <input type="text" class="admin-edit-field" value="Ketersediaan: ${promo.seats} Seat Lagi">
+                </div>
+
+                <div class="price-tag">
+                    <span class="editable-text">${formattedPrice}</span>
+                    <input type="text" class="admin-edit-field" value="${formattedPrice}">
+                </div>
+
+                <div class="itinerary-preview">
+                    <strong>Itinerary Singkat:</strong>
+                    <p class="editable-text">${promo.itinerary}</p>
+                    <textarea class="admin-edit-field">${promo.itinerary}</textarea>
+                </div>
+
+                <div class="card-actions">
+                    <a href="${promo.detailLink}" class="btn-detail">Lihat Detail Paket</a>
+                </div>
+            </div>
+        </article>
+      `;
+    });
+  })
+  .catch((err) => console.error("Error fetching promo data:", err));
