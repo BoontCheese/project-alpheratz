@@ -71,3 +71,41 @@ app.post("/api/promo", (req, res) => {
     data: newTour
   });
 });
+
+app.put("/api/promo/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const tour = promo.find(item => item.id === id);
+
+  if (!tour) {
+    return res.status(404).json({
+      message: "Tour not found"
+    });
+  }
+
+  Object.assign(tour, req.body);
+
+  res.json({
+    message: "Tour updated successfully",
+    data: tour
+  });
+});
+
+app.delete("/api/promo/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const index = promo.findIndex(item => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      message: "Tour not found"
+    });
+  }
+
+  const deletedTour = promo.splice(index, 1);
+
+  res.json({
+    message: "Tour deleted successfully",
+    data: deletedTour[0]
+  });
+});
