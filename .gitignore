@@ -10,3 +10,6 @@ node_modules/
 
 # Logs
 *.log
+
+# Env for Databases
+server/.env

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Paket Tour - Starlink Tour & Travel</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Your main/global CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Tour Detail CSS -->
+    <link rel="stylesheet" href="../assets/css/tour-detail.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         NAVBAR
+    =========================================== -->
+
+    <nav class="navbar">
+
+        <a href="promo.html" class="logo">
+            <img src="../assets/images/LOGO STARLINK POLISHED.png" alt="Logo Starlink">
+        </a>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="promo.html">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Kembali ke Promo
+                </a>
+            </li>
+
+            <li>
+                <button class="admin-login-btn" id="adminLoginBtn" onclick="toggleAdminLogin()">
+                    <i class="fa-solid fa-lock"></i>
+                    Admin Sign In
+                </button>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ==========================================
+         ADMIN BAR
+    =========================================== -->
+
+    <div class="admin-bar" id="adminBar">
+
+        <div>
+            <i class="fa-solid fa-user-shield"></i>
+
+            <strong>Admin Mode Active</strong>
+
+            — Anda sedang mengubah detail paket ini.
+        </div>
+
+        <div class="admin-actions">
+
+            <button class="btn-admin btn-save" id="savePackageBtn" onclick="savePackage()">
+                <i class="fa-solid fa-floppy-disk"></i>
+                Simpan Perubahan
+            </button>
+
+            <button class="btn-admin btn-logout" onclick="logoutAdmin()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Keluar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         LOADING MESSAGE
+    =========================================== -->
+
+    <div id="loadingMessage" class="detail-message">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        Memuat detail paket...
+    </div>
+
+
+    <!-- ==========================================
+         ERROR MESSAGE
+    =========================================== -->
+
+    <div id="errorMessage" class="detail-message error-message" style="display: none;">
+    </div>
+
+
+    <!-- ==========================================
+         MAIN DETAIL
+    =========================================== -->
+
+    <main class="tour-detail-container" id="tourDetail" style="display: none;">
+
+        <!-- ======================================
+             HEADER
+        ======================================= -->
+
+        <header class="detail-header">
+
+            <div>
+
+                <h1 id="packageName" class="editable-text">
+                </h1>
+
+                <input id="packageNameInput" type="text" class="admin-edit-field">
+
+            </div>
+
+
+            <div>
+
+                <p id="packagePrice" class="price-highlight editable-text">
+                    Harga lihat detail
+                </p>
+
+                <input id="packagePriceInput" type="text" class="admin-edit-field">
+
+            </div>
+
+        </header>
+
+
+        <!-- ======================================
+             DETAIL GRID
+        ======================================= -->
+
+        <section class="detail-grid">
+
+
+            <!-- ==================================
+                 LEFT SIDE
+            =================================== -->
+
+            <div class="detail-main">
+
+
+                <!-- PACKAGE IMAGE -->
+
+                <div class="card-img-wrapper detail-banner-wrapper">
+
+                    <div id="packageImagePlaceholder" class="card-img-placeholder">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+
+                    <img id="packageImage" class="detail-banner card-img" src="" alt="Package Image"
+                        style="display: none;">
+
+                    <label class="admin-img-upload">
+
+                        <i class="fa-solid fa-camera"></i>
+                        Ubah Gambar Banner
+
+                        <input type="file" hidden accept="image/*" onchange="updateCardImage(this)">
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==================================
+                     PACKAGE INFORMATION
+                =================================== -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        <i class="fa-solid fa-circle-info"></i>
+                        Informasi Paket
+                    </h2>
+
+
+                    <div class="package-info-grid">
+
+
+                        <!-- PACKAGE CODE -->
+
+                        <div class="detail-info-item">
+
+                            <strong>
+                                <i class="fa-solid fa-hashtag"></i>
+                                Kode Paket
+                            </strong>
+
+                            <span id="packageCode" class="editable-text">
+                            </span>
+
+                            <input id="packageCodeInput" type="text" class="admin-edit-field">
+
+                        </div>
+
+
+                        <!-- PACKAGE TYPE -->
+
+                        <div class="detail-info-item">
+
+                            <strong>
+                                <i class="fa-solid fa-tag"></i>
+                                Jenis Paket
+                            </strong>
+
+                            <span id="packageType" class="editable-text">
+                            </span>
+
+                            <input id="packageTypeInput" type="text" class="admin-edit-field">
+
+                        </div>
+
+
+                        <!-- DURATION -->
+
+                        <div class="detail-info-item">
+
+                            <strong>
+                                <i class="fa-solid fa-moon"></i>
+                                Durasi
+                            </strong>
+
+                            <span id="packageDuration" class="editable-text">
+                            </span>
+
+                            <input id="packageDurationInput" type="text" class="admin-edit-field">
+
+                        </div>
+
+
+                        <!-- PERIOD -->
+
+                        <div class="detail-info-item">
+
+                            <strong>
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Periode
+                            </strong>
+
+                            <span id="packagePeriod" class="editable-text">
+                            </span>
+
+                            <input id="packagePeriodInput" type="text" class="admin-edit-field">
+
+                        </div>
+
+
+                        <!-- STATUS -->
+
+                        <div class="detail-info-item">
+
+                            <strong>
+                                <i class="fa-solid fa-circle-check"></i>
+                                Status
+                            </strong>
+
+                            <span id="packageStatus" class="editable-text">
+                            </span>
+
+                            <input id="packageStatusInput" type="text" class="admin-edit-field">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     DESCRIPTION
+                =================================== -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        <i class="fa-solid fa-file-lines"></i>
+                        Deskripsi Paket
+                    </h2>
+
+                    <div class="description-box">
+
+                        <p id="packageDescription" class="editable-text">
+                        </p>
+
+                        <textarea id="packageDescriptionInput" class="admin-edit-field"></textarea>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     HOTEL OPTIONS
+                =================================== -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        <i class="fa-solid fa-hotel"></i>
+                        Pilihan Hotel & Harga
+                    </h2>
+
+                    <div id="hotelOptions">
+
+                        <!-- Generated by tour-detail.js -->
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     ITINERARY
+                =================================== -->
+
+                <section class="detail-section">
+
+                    <h2>
+                        <i class="fa-solid fa-route"></i>
+                        Itinerary Perjalanan
+                    </h2>
+
+                    <div id="itineraryList">
+
+                        <!-- Generated by tour-detail.js -->
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ==================================
+                 RIGHT SIDEBAR
+            =================================== -->
+
+            <aside class="detail-sidebar">
+
+                <div class="booking-card">
+
+
+                    <!-- SIDEBAR TITLE -->
+
+                    <h3>
+                        <i class="fa-solid fa-suitcase"></i>
+                        Informasi Paket
+                    </h3>
+
+
+                    <!-- PACKAGE CODE -->
+
+                    <p>
+                        <i class="fa-solid fa-hashtag"></i>
+
+                        <span id="sidebarCode">
+                        </span>
+                    </p>
+
+
+                    <!-- DURATION -->
+
+                    <p>
+                        <i class="fa-solid fa-moon"></i>
+
+                        <span id="sidebarDuration">
+                        </span>
+                    </p>
+
+
+                    <!-- PERIOD -->
+
+                    <p>
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        <span id="sidebarPeriod">
+                        </span>
+                    </p>
+
+
+                    <hr>
+
+
+                    <!-- PAYMENT -->
+
+                    <h3>
+                        <i class="fa-solid fa-credit-card"></i>
+                        Transfer Pembayaran
+                    </h3>
+
+
+                    <div class="payment-box">
+
+                        <p>
+                            Silakan hubungi Admin untuk
+                            informasi rekening dan pembayaran.
+                        </p>
+
+                    </div>
+
+
+                    <!-- WHATSAPP -->
+
+                    <a id="whatsappBooking" href="#" target="_blank" class="btn-wa-booking">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                        Pesan via WhatsApp
+
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <!-- Tour detail page -->
+    <script src="../assets/js/tour-detail.js"></script>
+
+</body>
+
+</html>

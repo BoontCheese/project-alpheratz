@@ -1,221 +1,1271 @@
-/* ==========================================
-   1. LAYOUT & GRID CONTAINER
-========================================== */
+/* =========================================================
+   TOUR DETAIL PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
 .tour-detail-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 5%;
+    width: min(1200px, calc(100% - 40px));
+    margin: 32px auto 60px;
 }
+
+
+/* =========================================================
+   LOADING / ERROR MESSAGE
+   ========================================================= */
+
+.detail-message {
+    width: min(900px, calc(100% - 40px));
+    margin: 50px auto;
+    padding: 24px;
+    text-align: center;
+
+    color: #64748b;
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.05);
+
+    font-size: 1rem;
+}
+
+.detail-message i {
+    margin-right: 8px;
+}
+
+.detail-message.error-message {
+    color: #c01920;
+    background: #fff5f5;
+    border-color: #fecaca;
+}
+
+
+/* =========================================================
+   ADMIN BAR
+   ========================================================= */
+
+.admin-bar {
+    display: none;
+
+    width: min(1200px, calc(100% - 40px));
+    margin: 20px auto 0;
+
+    padding: 12px 16px;
+
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+
+    color: #9a3412;
+
+    box-sizing: border-box;
+}
+
+.admin-bar.active {
+    display: flex;
+}
+
+.admin-bar strong {
+    font-weight: 700;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-admin {
+    border: none;
+    border-radius: 6px;
+
+    padding: 7px 12px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-logout {
+    background: #c01920;
+    color: #ffffff;
+}
+
+.btn-logout:hover {
+    background: #a9151b;
+}
+
+
+/* =========================================================
+   DETAIL HEADER
+   ========================================================= */
 
 .detail-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color, #e2e8f0);
+
+    gap: 30px;
+
+    margin-bottom: 30px;
+    padding-bottom: 18px;
+
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.detail-header > div:first-child {
+    flex: 1;
+}
+
+.detail-header > div:last-child {
+    text-align: right;
 }
 
 .detail-header h1 {
+    margin: 0;
+
     font-size: 2.2rem;
-    color: var(--text-color, #2d3748);
+    line-height: 1.2;
+
+    color: #2d3748;
 }
 
 .price-highlight {
+    margin: 0;
+
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--primary-color, #C01920);
+
+    color: #c01920;
 }
 
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 2.5rem;
-    align-items: start;
+
+/* =========================================================
+   ADMIN EDIT FIELDS
+   ========================================================= */
+
+/* Hidden during normal visitor mode */
+.admin-edit-field {
+    display: none;
 }
 
-/* ==========================================
-   2. MAIN CONTENT (LEFT SIDE)
-========================================== */
-.detail-main h2 {
-    font-size: 1.3rem;
-    color: var(--text-color, #2d3748);
-    margin: 2rem 0 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.detail-main h2 i {
-    color: var(--primary-color, #C01920);
-}
-
-/* Itinerary List */
-.itinerary-list li {
-    background: #ffffff;
-    border-left: 4px solid var(--primary-color, #C01920);
-    padding: 1rem;
-    border-radius: 0 8px 8px 0;
-    box-shadow: var(--card-shadow, 0 4px 12px rgba(0, 0, 0, 0.05));
-    transition: transform 0.2s ease;
-}
-
-.itinerary-list li:hover {
-    transform: translateX(4px);
-}
-
-/* Terms & Conditions List */
-.tc-list li {
-    background: #f8fafc;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    color: var(--text-muted, #64748b);
-    border: 1px solid var(--border-color, #e2e8f0);
-}
-
-/* ==========================================
-   3. SIDEBAR & BOOKING CARD (RIGHT SIDE)
-========================================== */
-.detail-sidebar {
-    position: sticky;
-    top: 20px;
-}
-
-.booking-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--card-shadow, 0 10px 25px rgba(0, 0, 0, 0.06));
-    border: 1px solid var(--border-color, #e2e8f0);
-}
-
-.booking-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: var(--text-color, #2d3748);
-}
-
-.booking-card p {
-    font-size: 0.95rem;
-    color: var(--text-muted, #64748b);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.booking-card p i {
-    color: var(--primary-color, #C01920);
-    width: 20px;
-    text-align: center;
-}
-
-.payment-box {
-    background: #f8fafc;
-    border: 1px solid var(--border-color, #e2e8f0);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.88rem;
-    line-height: 1.5;
-}
-
-.btn-wa-booking {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    background-color: #25d366;
-    color: #ffffff !important;
-    text-align: center;
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: background-color 0.2s, transform 0.2s;
-    text-decoration: none;
-}
-
-.btn-wa-booking:hover {
-    background-color: #20ba5a;
-    transform: translateY(-2px);
-}
-
-/* ==========================================
-   4. ADMIN MODE ADJUSTMENTS FOR DETAILS
-========================================== */
-/* Image upload button styling inside banner */
-.card-img-wrapper {
-    position: relative;
-    overflow: hidden;
-}
-
-.card-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Layout tweak when fields switch to input in admin mode */
 .admin-mode .editable-text {
     display: none !important;
 }
 
 .admin-mode .admin-edit-field {
     display: block !important;
+
     width: 100%;
-    padding: 0.4rem 0.6rem;
-    margin-top: 0.3rem;
-    border: 1px dashed var(--primary-color, #C01920);
-    border-radius: 6px;
-    font-size: 0.9rem;
-    background: #f0f7ff;
+    box-sizing: border-box;
+
+    padding: 9px 11px;
+    margin-top: 6px;
+
+    border: 1px dashed #c01920;
+    border-radius: 7px;
+
+    background: #fffafa;
     color: #2d3748;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    outline: none;
+}
+
+.admin-mode .admin-edit-field:focus {
+    border-style: solid;
+    box-shadow: 0 0 0 3px rgba(192, 25, 32, 0.1);
 }
 
 textarea.admin-edit-field {
-    min-height: 80px;
+    min-height: 110px;
     resize: vertical;
 }
 
-/* Header layout adjustments when inputs appear */
-.admin-mode .detail-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        360px;
+
+    gap: 40px;
+
+    align-items: start;
 }
 
-.admin-mode .detail-header > div {
-    width: 100%;
+.detail-main {
+    min-width: 0;
 }
+
+
+/* =========================================================
+   DETAIL SECTIONS
+   ========================================================= */
+
+.detail-section {
+    margin-top: 34px;
+}
+
+.detail-section:first-child {
+    margin-top: 0;
+}
+
+.detail-section h2 {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 0 0 16px;
+
+    font-size: 1.2rem;
+    line-height: 1.3;
+
+    color: #2d3748;
+}
+
+.detail-section h2 i {
+    color: #c01920;
+}
+
+
+/* =========================================================
+   BANNER
+   ========================================================= */
+
+.detail-banner-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 360px;
+
+    margin-bottom: 30px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+
+.detail-banner {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.detail-banner-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1f5f9,
+            #e2e8f0
+        );
+
+    color: #94a3b8;
+
+    font-size: 4rem;
+}
+
+
+/* =========================================================
+   PACKAGE INFORMATION GRID
+   ========================================================= */
+
+.package-info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.detail-info-item {
+    padding: 14px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.detail-info-item strong {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 7px;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    color: #64748b;
+}
+
+.detail-info-item strong i {
+    color: #c01920;
+}
+
+.detail-info-item .editable-text {
+    display: block;
+
+    color: #2d3748;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description-box {
+    padding: 18px 20px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    line-height: 1.7;
+}
+
+.description-box p {
+    margin: 0;
+
+    color: #475569;
+
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   HOTEL OPTIONS
+   ========================================================= */
+
+.hotel-option {
+    margin-bottom: 14px;
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 11px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.hotel-option:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.07);
+}
+
+.hotel-option-name {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    color: #2d3748;
+}
+
+.hotel-option-name i {
+    color: #c01920;
+}
+
+.hotel-description {
+    margin: 0 0 12px;
+
+    color: #64748b;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.hotel-price-list {
+    border-top: 1px solid #edf2f7;
+    padding-top: 7px;
+}
+
+.hotel-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 8px 0;
+
+    color: #64748b;
+
+    font-size: 0.9rem;
+}
+
+.hotel-price + .hotel-price {
+    border-top: 1px solid #f1f5f9;
+}
+
+.hotel-price strong {
+    color: #2d3748;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
 
 /* ==========================================
-   5. RESPONSIVE BREAKPOINTS
-========================================== */
+   TOUR ITINERARY
+   ========================================== */
+
+.itinerary-container {
+    position: relative;
+    margin-top: 1rem;
+}
+
+
+/* ==========================================
+   EACH DAY
+   ========================================== */
+
+.itinerary-day {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.itinerary-day:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==========================================
+   DAY HEADER
+   ========================================== */
+
+.itinerary-day-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.9rem;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.itinerary-day-number {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 58px;
+    height: 30px;
+
+    padding: 0 0.75rem;
+
+    background: #c01920;
+    color: #ffffff;
+
+    border-radius: 20px;
+
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+.itinerary-day-header h3 {
+    margin: 0;
+
+    color: #2d3748;
+
+    font-size: 1.05rem;
+    font-weight: 750;
+
+    line-height: 1.35;
+}
+
+
+/* ==========================================
+   DAY DESCRIPTION
+   ========================================== */
+
+.itinerary-day-description {
+    margin: 0 0 1.1rem;
+
+    color: #64748b;
+
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   ITINERARY
+   ========================================== */
+
+.itinerary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+
+/* ==========================================
+   ITINERARY DAY
+   ========================================== */
+
+.itinerary-day {
+    position: relative;
+    padding-left: 0;
+}
+
+
+/* ==========================================
+   DAY HEADER
+   ========================================== */
+
+.itinerary-day-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+
+.day-number {
+    flex-shrink: 0;
+
+    background: var(--primary-color, #c01920);
+    color: #ffffff;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    letter-spacing: 0.4px;
+}
+
+
+.day-title-wrapper {
+    flex: 1;
+}
+
+
+.day-title-wrapper h3 {
+    margin: 2px 0 5px;
+
+    font-size: 1rem;
+    line-height: 1.35;
+
+    color: var(--text-color, #2d3748);
+}
+
+
+.day-description {
+    margin: 0;
+
+    font-size: 0.86rem;
+    line-height: 1.65;
+
+    color: var(--text-muted, #64748b);
+}
+
+
+/* ==========================================
+   DESTINATION GRID
+   ========================================== */
+
+.itinerary-destinations {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin: 12px 0 14px;
+}
+
+
+.destination-card {
+    position: relative;
+
+    background: #f8fafc;
+
+    border: 1px solid
+        var(--border-color, #e2e8f0);
+
+    border-radius: 7px;
+
+    padding: 10px 11px;
+
+    min-height: 52px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.destination-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+.destination-card-title {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 7px;
+}
+
+
+.destination-card-title i {
+    color:
+        var(--primary-color, #c01920);
+
+    font-size: 0.72rem;
+
+    margin-top: 3px;
+}
+
+
+.destination-card-title strong {
+    color: var(--text-color, #2d3748);
+
+    font-size: 0.78rem;
+
+    line-height: 1.35;
+}
+
+
+.destination-badge {
+    display: inline-block;
+
+    margin-top: 5px;
+    margin-left: 19px;
+
+    padding: 2px 6px;
+
+    border-radius: 10px;
+
+    background: #edf2f7;
+
+    color: #64748b;
+
+    font-size: 0.62rem;
+}
+
+
+/* ==========================================
+   ACTIVITIES
+   ========================================== */
+
+.itinerary-activities {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 6px;
+}
+
+
+.activity-item {
+    display: flex;
+
+    gap: 9px;
+
+    padding: 7px 0;
+
+    border-bottom:
+        1px solid #edf1f5;
+}
+
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+
+.activity-marker {
+    flex-shrink: 0;
+
+    width: 10px;
+
+    padding-top: 5px;
+
+    color: #94a3b8;
+
+    font-size: 0.38rem;
+}
+
+
+.activity-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.activity-title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+
+.activity-title strong {
+    color: var(--text-color, #2d3748);
+
+    font-size: 0.78rem;
+
+    line-height: 1.45;
+}
+
+
+.activity-type {
+    display: inline-block;
+
+    padding: 2px 6px;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    font-size: 0.6rem;
+    font-weight: 500;
+}
+
+
+.activity-optional {
+    display: inline-block;
+
+    padding: 2px 6px;
+
+    border-radius: 10px;
+
+    background: #fff7ed;
+
+    color: #c2410c;
+
+    font-size: 0.6rem;
+    font-weight: 600;
+}
+
+
+.activity-content p {
+    margin: 2px 0 0;
+
+    color: var(--text-muted, #64748b);
+
+    font-size: 0.75rem;
+
+    line-height: 1.55;
+}
+
+
+/* ==========================================
+   EMPTY ITINERARY
+   ========================================== */
+
+.empty-data {
+    padding: 25px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    background: #f8fafc;
+
+    border-radius: 8px;
+}
+
+
+.empty-data i {
+    font-size: 1.5rem;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-data p {
+    margin: 0;
+
+    font-size: 0.85rem;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.detail-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.booking-card {
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.booking-card h3 {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 0 0 15px;
+
+    color: #2d3748;
+
+    font-size: 1rem;
+}
+
+.booking-card h3 i {
+    color: #c01920;
+}
+
+.booking-card p {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin: 0 0 9px;
+
+    color: #64748b;
+
+    font-size: 0.86rem;
+    line-height: 1.45;
+}
+
+.booking-card p i {
+    flex-shrink: 0;
+
+    width: 18px;
+
+    margin-top: 2px;
+
+    color: #c01920;
+
+    text-align: center;
+}
+
+.booking-card hr {
+    margin: 18px 0;
+
+    border: none;
+    border-top: 1px solid #e2e8f0;
+}
+
+
+/* =========================================================
+   PAYMENT
+   ========================================================= */
+
+.payment-box {
+    margin-bottom: 16px;
+    padding: 13px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.payment-box p {
+    display: block;
+
+    margin: 0;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
+.btn-wa-booking {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 16px;
+
+    background: #25d366;
+    color: #ffffff !important;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-wa-booking:hover {
+    background: #20ba5a;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD - ADMIN
+   ========================================================= */
+
+.admin-img-upload {
+    display: none;
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 18px;
+
+    transform: translateX(-50%);
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 14px;
+
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    z-index: 5;
+}
+
+.admin-mode .admin-img-upload {
+    display: flex;
+}
+
+.admin-img-upload:hover {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+
+/* =========================================================
+   EMPTY DATA
+   ========================================================= */
+
+.empty-data {
+    margin: 0;
+
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+
+    color: #94a3b8;
+
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
 @media (max-width: 992px) {
+
     .detail-grid {
         grid-template-columns: 1fr;
     }
 
     .detail-sidebar {
         position: static;
-        margin-top: 2rem;
+
+        margin-top: 10px;
     }
+
+    .booking-card {
+        max-width: none;
+    }
+
 }
 
-@media (max-width: 576px) {
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .tour-detail-container {
+        width: min(
+            100% - 28px,
+            700px
+        );
+
+        margin-top: 20px;
+    }
+
+    .admin-bar {
+        width: calc(100% - 28px);
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
     .detail-header {
         flex-direction: column;
+
         align-items: flex-start;
-        gap: 0.5rem;
+
+        gap: 10px;
+    }
+
+    .detail-header > div:last-child {
+        text-align: left;
     }
 
     .detail-header h1 {
-        font-size: 1.75rem;
+        font-size: 1.8rem;
     }
 
     .price-highlight {
-        font-size: 1.4rem;
+        font-size: 1.45rem;
     }
+
+    .package-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-list {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-banner-wrapper {
+        height: 260px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .tour-detail-container {
+        width: calc(100% - 20px);
+    }
+
+    .admin-bar {
+        width: calc(100% - 20px);
+    }
+
+    .detail-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .price-highlight {
+        font-size: 1.25rem;
+    }
+
+    .detail-section h2 {
+        font-size: 1.05rem;
+    }
+
+    .detail-banner-wrapper {
+        height: 210px;
+
+        border-radius: 10px;
+    }
+
+    .itinerary-day {
+        padding: 15px;
+    }
+
+    .itinerary-day-header {
+        align-items: flex-start;
+    }
+
+    .itinerary-day-header h3 {
+        font-size: 0.98rem;
+    }
+
+    .destination-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hotel-option {
+        padding: 14px;
+    }
+
+    .hotel-price {
+        font-size: 0.82rem;
+    }
+
+    .booking-card {
+        padding: 17px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .itinerary-day-header {
+        gap: 9px;
+    }
+
+    .day-number {
+        font-size: 0.65rem;
+        padding: 4px 7px;
+    }
+
+    .day-title-wrapper h3 {
+        font-size: 0.9rem;
+    }
+
+    .day-description {
+        font-size: 0.78rem;
+    }
+
+    .itinerary-destinations {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-card {
+        min-height: auto;
+    }
+
+    .activity-title strong {
+        font-size: 0.75rem;
+    }
+
+    .activity-content p {
+        font-size: 0.72rem;
+    }
+}
+
+/* ==========================================
+   ADMIN SAVE BUTTON
+   ========================================== */
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-save {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.btn-save:hover {
+    background: #15803d;
+}
+
+.btn-save:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
