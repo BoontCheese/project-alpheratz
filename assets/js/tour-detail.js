@@ -299,19 +299,19 @@ function renderPackage(pkg) {
    ========================================== */
 
 function renderHotelOptions(options) {
-    if (!options.length) {
-        return `
+  if (!options.length) {
+    return `
             <p class="empty-data">
                 Belum ada pilihan hotel.
             </p>
         `;
-    }
+  }
 
-    return options
-        .map((option) => {
-            const prices = option.prices || [];
+  return options
+    .map((option) => {
+      const prices = option.prices || [];
 
-            return `
+      return `
                 <div
                     class="hotel-option"
                     data-option-id="${option.option_id}"
@@ -321,9 +321,7 @@ function renderHotelOptions(options) {
 
                         <i class="fa-solid fa-bed"></i>
 
-                        ${escapeHtml(
-                            option.option_name
-                        )}
+                        ${escapeHtml(option.option_name)}
 
                     </div>
 
@@ -331,26 +329,22 @@ function renderHotelOptions(options) {
                     <div class="hotel-option-description">
 
                         <p class="editable-text">
-                            ${escapeHtml(
-                                option.description || ""
-                            )}
+                            ${escapeHtml(option.description || "")}
                         </p>
 
                         <textarea
                             class="admin-edit-field hotel-description-input"
                             placeholder="Masukkan nama/informasi hotel"
-                        >${escapeHtml(
-                            option.description || ""
-                        )}</textarea>
+                        >${escapeHtml(option.description || "")}</textarea>
 
                     </div>
 
 
                     ${
-                        prices.length
-                            ? prices
-                                .map(
-                                    (price) => `
+                      prices.length
+                        ? prices
+                            .map(
+                              (price) => `
                                     
                                     <div
                                         class="hotel-price"
@@ -359,16 +353,16 @@ function renderHotelOptions(options) {
 
                                         <span>
                                             ${escapeHtml(
-                                                price.occupancy_name ||
+                                              price.occupancy_name ||
                                                 price.occupancy_code ||
-                                                "Harga"
+                                                "Harga",
                                             )}
                                         </span>
 
                                         <strong class="editable-text">
                                             ${formatPrice(
-                                                price.price,
-                                                price.currency
+                                              price.price,
+                                              price.currency,
                                             )}
                                         </strong>
 
@@ -382,10 +376,10 @@ function renderHotelOptions(options) {
 
                                     </div>
 
-                                `
-                                )
-                                .join("")
-                            : `
+                                `,
+                            )
+                            .join("")
+                        : `
                                 <p>
                                     Harga belum tersedia.
                                 </p>
@@ -394,8 +388,8 @@ function renderHotelOptions(options) {
 
                 </div>
             `;
-        })
-        .join("");
+    })
+    .join("");
 }
 
 /* ==========================================
@@ -422,164 +416,343 @@ function renderItineraries(itineraries) {
                 const activities = day.activities || [];
 
                 return `
-                    <article class="itinerary-day">
+                        <article class="itinerary-day">
 
-                        <!-- DAY HEADER -->
-                        <div class="itinerary-day-header">
+                            <!-- ==========================================
+                                 DAY HEADER
+                                 ========================================== -->
 
-                            <div class="day-number">
-                                DAY ${day.day_number}
+                            <div class="itinerary-day-header">
+
+                                <div class="day-number">
+                                    DAY ${day.day_number}
+                                </div>
+
+                                <div class="day-title-wrapper">
+
+                                    <!-- DISPLAY TITLE -->
+                                    <h3 class="editable-text">
+                                        ${escapeHtml(
+                                          day.title ||
+                                            `Perjalanan Hari ${day.day_number}`,
+                                        )}
+                                    </h3>
+
+                                    <!-- EDIT TITLE -->
+                                    <input
+                                        type="text"
+                                        class="admin-edit-field itinerary-title-input"
+                                        data-itinerary-id="${day.itinerary_id}"
+                                        value="${escapeAttribute(
+                                          day.title ||
+                                            `Perjalanan Hari ${day.day_number}`,
+                                        )}"
+                                        placeholder="Judul itinerary"
+                                    >
+
+                                    <!-- DISPLAY DESCRIPTION -->
+                                    <p class="day-description editable-text">
+                                        ${escapeHtml(day.description || "")}
+                                    </p>
+
+                                    <!-- EDIT DESCRIPTION -->
+                                    <textarea
+                                        class="admin-edit-field itinerary-description-input"
+                                        data-itinerary-id="${day.itinerary_id}"
+                                        placeholder="Deskripsi itinerary"
+                                    >${escapeHtml(
+                                      day.description || "",
+                                    )}</textarea>
+
+                                </div>
+
                             </div>
 
-                            <div class="day-title-wrapper">
 
-                                <h3>
-                                    ${escapeHtml(
-                                      day.title ||
-                                        `Perjalanan Hari ${day.day_number}`,
-                                    )}
-                                </h3>
+                            <!-- ==========================================
+                                 DESTINATIONS
+                                 ========================================== -->
 
-                                ${
-                                  day.description
-                                    ? `
-                                        <p class="day-description">
-                                            ${escapeHtml(day.description)}
-                                        </p>
+                            ${
+                              destinations.length
+                                ? `
+                                        <div class="itinerary-destinations">
+
+                                            ${destinations
+                                              .map(
+                                                (destination) => `
+                                                        <div class="destination-card">
+
+                                                            <div class="destination-card-title">
+
+                                                                <i class="fa-solid fa-location-dot"></i>
+
+                                                                <!-- DISPLAY DESTINATION -->
+                                                                <strong class="editable-text">
+                                                                    ${escapeHtml(
+                                                                      destination.destination_name ||
+                                                                        "",
+                                                                    )}
+                                                                </strong>
+
+                                                                <!-- EDIT DESTINATION -->
+                                                                <input
+                                                                    type="text"
+                                                                    class="admin-edit-field destination-name-input"
+                                                                    data-destination-id="${destination.itinerary_destination_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    value="${escapeAttribute(
+                                                                      destination.destination_name ||
+                                                                        "",
+                                                                    )}"
+                                                                    placeholder="Nama destinasi"
+                                                                />
+
+                                                            </div>
+
+
+                                                            ${
+                                                              destination.destination_type
+                                                                ? `
+                                                                        <span class="destination-badge">
+                                                                            ${escapeHtml(
+                                                                              destination.destination_type,
+                                                                            )}
+                                                                        </span>
+                                                                    `
+                                                                : ""
+                                                            }
+
+                                                        </div>
+                                                    `,
+                                              )
+                                              .join("")}
+
+                                        </div>
                                     `
-                                    : ""
-                                }
-
-                            </div>
-
-                        </div>
+                                : ""
+                            }
 
 
-                        <!-- DESTINATIONS -->
-                        ${
-                          destinations.length
-                            ? `
-                                <div class="itinerary-destinations">
+                            <!-- ==========================================
+                                 ACTIVITIES
+                                 ========================================== -->
 
-                                    ${destinations
-                                      .map(
-                                        (destination) => `
+                            ${
+                              activities.length
+                                ? `
+                                        <div class="itinerary-activities">
 
-                                        <div class="destination-card">
+                                            ${activities
+                                              .map(
+                                                (activity) => `
+                                                        <div
+                                                            class="activity-item"
+                                                            data-activity-id="${activity.activity_id}"
+                                                            data-itinerary-id="${day.itinerary_id}"
+                                                        >
 
-                                            <div class="destination-card-title">
+                                                            <!-- ACTIVITY MARKER -->
+                                                            <div class="activity-marker">
+                                                                <i class="fa-solid fa-circle"></i>
+                                                            </div>
 
-                                                <i class="fa-solid fa-location-dot"></i>
 
-                                                <strong>
-                                                    ${escapeHtml(
-                                                      destination.destination_name,
-                                                    )}
-                                                </strong>
+                                                            <div class="activity-content">
 
-                                            </div>
+                                                                <!-- ==========================================
+                                                                     DISPLAY ACTIVITY TITLE
+                                                                     ========================================== -->
 
-                                            ${
-                                              destination.destination_type
-                                                ? `
-                                                    <span class="destination-badge">
-                                                        ${escapeHtml(
-                                                          destination.destination_type,
-                                                        )}
-                                                    </span>
-                                                `
-                                                : ""
-                                            }
+                                                                <div class="activity-title">
+
+                                                                    <strong class="editable-text">
+                                                                        ${escapeHtml(
+                                                                          activity.activity_name ||
+                                                                            "",
+                                                                        )}
+                                                                    </strong>
+
+                                                                    ${
+                                                                      activity.activity_type
+                                                                        ? `
+                                                                                <span class="activity-type">
+                                                                                    ${escapeHtml(
+                                                                                      activity.activity_type,
+                                                                                    )}
+                                                                                </span>
+                                                                            `
+                                                                        : ""
+                                                                    }
+
+                                                                    ${
+                                                                      activity.is_optional
+                                                                        ? `
+                                                                                <span class="activity-optional">
+                                                                                    Optional
+                                                                                </span>
+                                                                            `
+                                                                        : ""
+                                                                    }
+
+                                                                </div>
+
+
+                                                                <!-- ==========================================
+                                                                     EDIT ACTIVITY NAME
+                                                                     ========================================== -->
+
+                                                                <input
+                                                                    type="text"
+                                                                    class="admin-edit-field activity-name-input"
+                                                                    data-activity-id="${activity.activity_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    value="${escapeAttribute(
+                                                                      activity.activity_name ||
+                                                                        "",
+                                                                    )}"
+                                                                    placeholder="Nama aktivitas"
+                                                                >
+
+
+                                                                <!-- ==========================================
+                                                                     DISPLAY ACTIVITY DESCRIPTION
+                                                                     ========================================== -->
+
+                                                                ${
+                                                                  activity.description
+                                                                    ? `
+                                                                            <p class="editable-text activity-description-text">
+                                                                                ${escapeHtml(
+                                                                                  activity.description,
+                                                                                )}
+                                                                            </p>
+                                                                        `
+                                                                    : ""
+                                                                }
+
+
+                                                                <!-- ==========================================
+                                                                     EDIT ACTIVITY DESCRIPTION
+                                                                     ========================================== -->
+
+                                                                <textarea
+                                                                    class="admin-edit-field activity-description-input"
+                                                                    data-activity-id="${activity.activity_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    placeholder="Deskripsi aktivitas"
+                                                                >${escapeHtml(
+                                                                  activity.description ||
+                                                                    "",
+                                                                )}</textarea>
+
+
+                                                                <!-- ==========================================
+                                                                     EDIT ACTIVITY TYPE
+                                                                     ========================================== -->
+
+                                                                <input
+                                                                    type="text"
+                                                                    class="admin-edit-field activity-type-input"
+                                                                    data-activity-id="${activity.activity_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    value="${escapeAttribute(
+                                                                      activity.activity_type ||
+                                                                        "",
+                                                                    )}"
+                                                                    placeholder="Tipe aktivitas"
+                                                                >
+
+
+                                                                <!-- ==========================================
+                                                                     OPTIONAL
+                                                                     ========================================== -->
+
+                                                                <label class="admin-edit-field activity-optional-input-wrapper">
+
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        class="activity-optional-input"
+                                                                        data-activity-id="${activity.activity_id}"
+                                                                        data-itinerary-id="${day.itinerary_id}"
+                                                                        ${
+                                                                          activity.is_optional
+                                                                            ? "checked"
+                                                                            : ""
+                                                                        }
+                                                                    >
+
+                                                                    Optional
+
+                                                                </label>
+
+
+                                                                <!-- ==========================================
+                                                                     ADDITIONAL COST
+                                                                     ========================================== -->
+
+                                                                <input
+                                                                    type="number"
+                                                                    class="admin-edit-field activity-cost-input"
+                                                                    data-activity-id="${activity.activity_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    value="${escapeAttribute(
+                                                                      activity.additional_cost ??
+                                                                        "",
+                                                                    )}"
+                                                                    placeholder="Biaya tambahan"
+                                                                    step="0.01"
+                                                                >
+
+
+                                                                <!-- ==========================================
+                                                                     CURRENCY
+                                                                     ========================================== -->
+
+                                                                <input
+                                                                    type="text"
+                                                                    class="admin-edit-field activity-currency-input"
+                                                                    data-activity-id="${activity.activity_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    value="${escapeAttribute(
+                                                                      activity.currency ||
+                                                                        "",
+                                                                    )}"
+                                                                    placeholder="Currency"
+                                                                >
+
+
+                                                                <!-- ==========================================
+                                                                     COST UNIT
+                                                                     ========================================== -->
+
+                                                                <input
+                                                                    type="text"
+                                                                    class="admin-edit-field activity-cost-unit-input"
+                                                                    data-activity-id="${activity.activity_id}"
+                                                                    data-itinerary-id="${day.itinerary_id}"
+                                                                    value="${escapeAttribute(
+                                                                      activity.cost_unit ||
+                                                                        "",
+                                                                    )}"
+                                                                    placeholder="Cost unit"
+                                                                >
+
+                                                            </div>
+
+                                                        </div>
+                                                    `,
+                                              )
+                                              .join("")}
 
                                         </div>
-
-                                    `,
-                                      )
-                                      .join("")}
-
-                                </div>
-                            `
-                            : ""
-                        }
+                                    `
+                                : ""
+                            }
 
 
-                        <!-- ACTIVITIES -->
-                        ${
-                          activities.length
-                            ? `
-                                <div class="itinerary-activities">
-
-                                    ${activities
-                                      .map(
-                                        (activity) => `
-
-                                        <div class="activity-item">
-
-                                            <div class="activity-marker">
-                                                <i class="fa-solid fa-circle"></i>
-                                            </div>
-
-                                            <div class="activity-content">
-
-                                                <div class="activity-title">
-
-                                                    <strong>
-                                                        ${escapeHtml(
-                                                          activity.activity_name,
-                                                        )}
-                                                    </strong>
-
-                                                    ${
-                                                      activity.activity_type
-                                                        ? `
-                                                            <span class="activity-type">
-                                                                ${escapeHtml(
-                                                                  activity.activity_type,
-                                                                )}
-                                                            </span>
-                                                        `
-                                                        : ""
-                                                    }
-
-                                                    ${
-                                                      activity.is_optional
-                                                        ? `
-                                                            <span class="activity-optional">
-                                                                Optional
-                                                            </span>
-                                                        `
-                                                        : ""
-                                                    }
-
-                                                </div>
-
-                                                ${
-                                                  activity.description
-                                                    ? `
-                                                        <p>
-                                                            ${escapeHtml(
-                                                              activity.description,
-                                                            )}
-                                                        </p>
-                                                    `
-                                                    : ""
-                                                }
-
-                                            </div>
-
-                                        </div>
-
-                                    `,
-                                      )
-                                      .join("")}
-
-                                </div>
-                            `
-                            : ""
-                        }
-
-                    </article>
-                `;
+                        </article>
+                    `;
               })
               .join("")}
 
@@ -798,463 +971,542 @@ function syncInputFieldsToText() {
    ========================================== */
 
 async function savePackage() {
+  const packageId = getPackageId();
 
-    const packageId = getPackageId();
+  if (!packageId) {
+    alert("ID paket tidak ditemukan.");
 
-    if (!packageId) {
+    return;
+  }
 
-        alert("ID paket tidak ditemukan.");
+  const saveButton = document.getElementById("savePackageBtn");
 
-        return;
-    }
+  // ==========================================
+  // GET PACKAGE FIELDS
+  // ==========================================
 
+  const packageName = document.getElementById("packageNameInput")?.value.trim();
 
-    const saveButton =
-        document.getElementById(
-            "savePackageBtn"
-        );
+  const packageCode = document.getElementById("packageCodeInput")?.value.trim();
 
+  const packageType = document.getElementById("packageTypeInput")?.value.trim();
 
-    // ==========================================
-    // GET PACKAGE FIELDS
-    // ==========================================
+  const packageDuration = document
+    .getElementById("packageDurationInput")
+    ?.value.trim();
 
-    const packageName =
-        document
-            .getElementById("packageNameInput")
-            ?.value
-            .trim();
+  const packagePeriod = document
+    .getElementById("packagePeriodInput")
+    ?.value.trim();
 
-    const packageCode =
-        document
-            .getElementById("packageCodeInput")
-            ?.value
-            .trim();
+  const packageStatus = document
+    .getElementById("packageStatusInput")
+    ?.value.trim();
 
-    const packageType =
-        document
-            .getElementById("packageTypeInput")
-            ?.value
-            .trim();
+  const packageDescription = document
+    .getElementById("packageDescriptionInput")
+    ?.value.trim();
 
-    const packageDuration =
-        document
-            .getElementById("packageDurationInput")
-            ?.value
-            .trim();
+  // ==========================================
+  // BASIC VALIDATION
+  // ==========================================
 
-    const packagePeriod =
-        document
-            .getElementById("packagePeriodInput")
-            ?.value
-            .trim();
+  if (!packageName) {
+    alert("Nama paket tidak boleh kosong.");
 
-    const packageStatus =
-        document
-            .getElementById("packageStatusInput")
-            ?.value
-            .trim();
+    return;
+  }
 
-    const packageDescription =
-        document
-            .getElementById("packageDescriptionInput")
-            ?.value
-            .trim();
+  if (!packageCode) {
+    alert("Kode paket tidak boleh kosong.");
 
+    return;
+  }
 
-    // ==========================================
-    // BASIC VALIDATION
-    // ==========================================
+  // ==========================================
+  // PARSE DURATION
+  // ==========================================
 
-    if (!packageName) {
+  const durationMatch = packageDuration.match(
+    /(\d+)\s*Hari\s*\/\s*(\d+)\s*Malam/i,
+  );
 
-        alert(
-            "Nama paket tidak boleh kosong."
-        );
+  if (!durationMatch) {
+    alert("Format durasi harus seperti: 4 Hari / 3 Malam");
 
-        return;
-    }
+    return;
+  }
 
+  const durationDays = Number(durationMatch[1]);
 
-    if (!packageCode) {
+  const durationNights = Number(durationMatch[2]);
 
-        alert(
-            "Kode paket tidak boleh kosong."
-        );
+  // ==========================================
+  // PARSE PERIOD
+  // ==========================================
 
-        return;
-    }
+  const periodDates = parsePeriod(packagePeriod);
 
+  if (!periodDates) {
+    alert("Format periode tidak dikenali. Contoh: 01 Jul 2026 - 31 Oct 2026");
 
-    // ==========================================
-    // PARSE DURATION
-    // ==========================================
+    return;
+  }
 
-    const durationMatch =
-        packageDuration.match(
-            /(\d+)\s*Hari\s*\/\s*(\d+)\s*Malam/i
-        );
+  // ==========================================
+  // PACKAGE PAYLOAD
+  // ==========================================
 
+  const payload = {
+    package_code: packageCode,
 
-    if (!durationMatch) {
+    package_name: packageName,
 
-        alert(
-            "Format durasi harus seperti: 4 Hari / 3 Malam"
-        );
+    package_type: packageType,
 
-        return;
-    }
+    duration_days: durationDays,
 
+    duration_nights: durationNights,
 
-    const durationDays =
-        Number(durationMatch[1]);
+    valid_from: periodDates.from,
 
-    const durationNights =
-        Number(durationMatch[2]);
+    valid_until: periodDates.until,
 
+    description: packageDescription,
 
-    // ==========================================
-    // PARSE PERIOD
-    // ==========================================
+    status: packageStatus,
+  };
 
-    const periodDates =
-        parsePeriod(packagePeriod);
+  // ==========================================
+  // COLLECT HOTEL CHANGES
+  // ==========================================
 
+  const hotelChanges = [];
 
-    if (!periodDates) {
+  document
+    .querySelectorAll("#hotelOptions .hotel-option")
+    .forEach((optionElement) => {
+      const optionId = optionElement.dataset.optionId;
 
-        alert(
-            "Format periode tidak dikenali. Contoh: 01 Jul 2026 - 31 Oct 2026"
-        );
+      if (!optionId) {
+        console.warn("Hotel option has no option ID:", optionElement);
 
         return;
-    }
+      }
 
+      // --------------------------------------
+      // HOTEL DESCRIPTION
+      // --------------------------------------
 
-    // ==========================================
-    // PACKAGE PAYLOAD
-    // ==========================================
+      const descriptionInput = optionElement.querySelector(
+        ".hotel-description-input",
+      );
 
-    const payload = {
+      // --------------------------------------
+      // HOTEL PRICES
+      // --------------------------------------
 
-        package_code:
-            packageCode,
+      const prices = [];
 
-        package_name:
-            packageName,
+      optionElement.querySelectorAll(".hotel-price").forEach((priceElement) => {
+        const priceId = priceElement.dataset.priceId;
 
-        package_type:
-            packageType,
+        const priceInput = priceElement.querySelector(".hotel-price-input");
 
-        duration_days:
-            durationDays,
+        if (!priceId || !priceInput) {
+          return;
+        }
 
-        duration_nights:
-            durationNights,
+        prices.push({
+          price_id: Number(priceId),
 
-        valid_from:
-            periodDates.from,
-
-        valid_until:
-            periodDates.until,
-
-        description:
-            packageDescription,
-
-        status:
-            packageStatus
-    };
-
-
-    // ==========================================
-    // COLLECT HOTEL CHANGES
-    // ==========================================
-
-    const hotelChanges = [];
-
-
-    document
-        .querySelectorAll(
-            "#hotelOptions .hotel-option"
-        )
-        .forEach((optionElement) => {
-
-            const optionId =
-                optionElement.dataset.optionId;
-
-
-            if (!optionId) {
-
-                console.warn(
-                    "Hotel option has no option ID:",
-                    optionElement
-                );
-
-                return;
-            }
-
-
-            // --------------------------------------
-            // HOTEL DESCRIPTION
-            // --------------------------------------
-
-            const descriptionInput =
-                optionElement.querySelector(
-                    ".hotel-description-input"
-                );
-
-
-            // --------------------------------------
-            // HOTEL PRICES
-            // --------------------------------------
-
-            const prices = [];
-
-
-            optionElement
-                .querySelectorAll(
-                    ".hotel-price"
-                )
-                .forEach((priceElement) => {
-
-                    const priceId =
-                        priceElement.dataset.priceId;
-
-
-                    const priceInput =
-                        priceElement.querySelector(
-                            ".hotel-price-input"
-                        );
-
-
-                    if (
-                        !priceId ||
-                        !priceInput
-                    ) {
-
-                        return;
-                    }
-
-
-                    prices.push({
-
-                        price_id:
-                            Number(priceId),
-
-                        price:
-                            Number(
-                                priceInput.value
-                            )
-                    });
-
-                });
-
-
-            // --------------------------------------
-            // ADD HOTEL CHANGE
-            // --------------------------------------
-
-            hotelChanges.push({
-
-                option_id:
-                    Number(optionId),
-
-                description:
-                    descriptionInput
-                        ? descriptionInput.value.trim()
-                        : "",
-
-                prices:
-                    prices
-
-            });
-
+          price: Number(priceInput.value),
         });
+      });
 
+      // --------------------------------------
+      // ADD HOTEL CHANGE
+      // --------------------------------------
 
-    console.log(
-        "HOTEL CHANGES:",
-        hotelChanges
+      hotelChanges.push({
+        option_id: Number(optionId),
+
+        description: descriptionInput ? descriptionInput.value.trim() : "",
+
+        prices: prices,
+      });
+    });
+
+  console.log("HOTEL CHANGES:", hotelChanges);
+
+  console.log("HOTEL CHANGES JSON:", JSON.stringify(hotelChanges, null, 2));
+
+  console.log("PACKAGE PAYLOAD:", payload);
+
+  // ==========================================
+  // COLLECT ITINERARY CHANGES
+  // ==========================================
+
+  const itineraryChanges = [];
+
+  document.querySelectorAll(".itinerary-day").forEach((dayElement) => {
+    const itineraryId = dayElement.querySelector(".itinerary-title-input")
+      ?.dataset.itineraryId;
+
+    const titleInput = dayElement.querySelector(".itinerary-title-input");
+
+    const descriptionInput = dayElement.querySelector(
+      ".itinerary-description-input",
     );
 
+    if (!itineraryId) {
+      return;
+    }
 
-    console.log(
-        "HOTEL CHANGES JSON:",
-        JSON.stringify(
-            hotelChanges,
-            null,
-            2
-        )
+    itineraryChanges.push({
+      itinerary_id: Number(itineraryId),
+
+      title: titleInput ? titleInput.value.trim() : "",
+
+      description: descriptionInput ? descriptionInput.value.trim() : "",
+    });
+  });
+
+  console.log(
+    "ITINERARY CHANGES JSON:",
+    JSON.stringify(itineraryChanges, null, 2),
+  );
+
+  // ==========================================
+  // COLLECT DESTINATION CHANGES
+  // ==========================================
+
+  const destinationChanges = [];
+
+  document
+    .querySelectorAll(".destination-card")
+    .forEach((destinationElement) => {
+      const destinationId = destinationElement.querySelector(
+        ".destination-name-input",
+      )?.dataset.destinationId;
+
+      const itineraryId = destinationElement.querySelector(
+        ".destination-name-input",
+      )?.dataset.itineraryId;
+
+      const nameInput = destinationElement.querySelector(
+        ".destination-name-input",
+      );
+
+      if (!destinationId || !nameInput) {
+        return;
+      }
+
+      destinationChanges.push({
+        itinerary_destination_id: Number(destinationId),
+
+        itinerary_id: Number(itineraryId),
+
+        destination_name: nameInput.value.trim(),
+      });
+    });
+
+  console.log(
+  "DESTINATION CHANGES JSON:",
+  JSON.stringify(destinationChanges, null, 2),
+);
+
+// ==========================================
+// COLLECT ACTIVITY CHANGES
+// ==========================================
+
+const activityChanges = [];
+
+document
+  .querySelectorAll(".activity-item")
+  .forEach((activityElement) => {
+
+    const activityId = activityElement.dataset.activityId;
+
+    const itineraryId = activityElement.dataset.itineraryId;
+
+    const nameInput = activityElement.querySelector(
+      ".activity-name-input",
     );
 
-
-    console.log(
-        "PACKAGE PAYLOAD:",
-        payload
+    const descriptionInput = activityElement.querySelector(
+      ".activity-description-input",
     );
 
+    const typeInput = activityElement.querySelector(
+      ".activity-type-input",
+    );
 
-    // ==========================================
-    // DISABLE SAVE BUTTON
-    // ==========================================
+    const optionalInput = activityElement.querySelector(
+      ".activity-optional-input",
+    );
 
-    if (saveButton) {
+    const costInput = activityElement.querySelector(
+      ".activity-cost-input",
+    );
 
-        saveButton.disabled = true;
+    const currencyInput = activityElement.querySelector(
+      ".activity-currency-input",
+    );
 
-        saveButton.innerHTML = `
+    const costUnitInput = activityElement.querySelector(
+      ".activity-cost-unit-input",
+    );
+
+    // --------------------------------------
+    // Make sure activity ID exists
+    // --------------------------------------
+
+    if (!activityId) {
+      console.warn(
+        "Activity has no activity ID:",
+        activityElement,
+      );
+
+      return;
+    }
+
+    // --------------------------------------
+    // Collect activity data
+    // --------------------------------------
+
+    activityChanges.push({
+      activity_id: Number(activityId),
+
+      itinerary_id: itineraryId
+        ? Number(itineraryId)
+        : null,
+
+      activity_name: nameInput
+        ? nameInput.value.trim()
+        : "",
+
+      activity_type: typeInput
+        ? typeInput.value.trim()
+        : "",
+
+      description: descriptionInput
+        ? descriptionInput.value.trim()
+        : "",
+
+      is_optional: optionalInput
+        ? optionalInput.checked
+        : false,
+
+      additional_cost:
+        costInput && costInput.value !== ""
+          ? Number(costInput.value)
+          : null,
+
+      currency: currencyInput
+        ? currencyInput.value.trim()
+        : "",
+
+      cost_unit: costUnitInput
+        ? costUnitInput.value.trim()
+        : "",
+    });
+  });
+
+console.log(
+  "ACTIVITY CHANGES:",
+  activityChanges,
+);
+
+console.log(
+  "ACTIVITY CHANGES JSON:",
+  JSON.stringify(activityChanges, null, 2),
+);
+
+// ==========================================
+// DISABLE SAVE BUTTON
+// ==========================================
+
+  if (saveButton) {
+    saveButton.disabled = true;
+
+    saveButton.innerHTML = `
             <i class="fa-solid fa-spinner fa-spin"></i>
             Menyimpan...
         `;
+  }
+
+  // ==========================================
+  // SAVE
+  // ==========================================
+
+  try {
+    // ======================================
+    // 1. SAVE PACKAGE
+    // ======================================
+
+    console.log("Updating package:", packageId);
+
+    const response = await fetch(`/api/packages/${packageId}`, {
+      method: "PUT",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    console.log("PACKAGE UPDATE RESPONSE:", result);
+
+    if (!response.ok) {
+      throw new Error(result.message || "Gagal menyimpan perubahan paket.");
     }
 
+    // ==========================================
+    // SAVE ITINERARY CHANGES
+    // ==========================================
+
+    const itineraryResponse = await fetch(
+      `/api/packages/${packageId}/itineraries`,
+      {
+        method: "PUT",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          itineraries: itineraryChanges,
+        }),
+      },
+    );
+
+    const itineraryResult = await itineraryResponse.json();
+
+    console.log("ITINERARY UPDATE RESPONSE:", itineraryResult);
+
+    if (!itineraryResponse.ok) {
+      throw new Error(
+        itineraryResult.message || "Gagal menyimpan perubahan itinerary.",
+      );
+    }
 
     // ==========================================
-    // SAVE
+    // SAVE DESTINATION CHANGES
     // ==========================================
 
-    try {
+    const destinationResponse = await fetch(
+      `/api/packages/${packageId}/itineraries/destinations`,
+      {
+        method: "PUT",
 
-        // ======================================
-        // 1. SAVE PACKAGE
-        // ======================================
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-        console.log(
-            "Updating package:",
-            packageId
-        );
+        body: JSON.stringify({
+          destinations: destinationChanges,
+        }),
+      },
+    );
 
+    const destinationResult = await destinationResponse.json();
 
-        const response =
-            await fetch(
-                `/api/packages/${packageId}`,
-                {
+    console.log("DESTINATION UPDATE RESPONSE:", destinationResult);
 
-                    method: "PUT",
+    if (!destinationResponse.ok) {
+      throw new Error(
+        destinationResult.message || "Gagal menyimpan perubahan destinasi.",
+      );
+    }
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+    // ==========================================
+    // SAVE ACTIVITY CHANGES
+    // ==========================================
 
-                    body:
-                        JSON.stringify(
-                            payload
-                        )
-                }
-            );
+    console.log("Updating activities:", packageId);
 
+    const activityResponse = await fetch(
+      `/api/packages/${packageId}/itineraries/activities`,
+      {
+        method: "PUT",
 
-        const result =
-            await response.json();
+        headers: {
+          "Content-Type": "application/json",
+        },
 
+        body: JSON.stringify({
+          activities: activityChanges,
+        }),
+      },
+    );
 
-        console.log(
-            "PACKAGE UPDATE RESPONSE:",
-            result
-        );
+    const activityResult = await activityResponse.json();
 
+    console.log("ACTIVITY UPDATE RESPONSE:", activityResult);
 
-        if (!response.ok) {
+    if (!activityResponse.ok) {
+      throw new Error(
+        activityResult.message || "Gagal menyimpan perubahan aktivitas.",
+      );
+    }
 
-            throw new Error(
-                result.message ||
-                "Gagal menyimpan perubahan paket."
-            );
-        }
+    // ======================================
+    // SAVE HOTELS
+    // ======================================
 
+    console.log("Updating hotels:", packageId);
 
-        // ======================================
-        // 2. SAVE HOTELS
-        // ======================================
+    const hotelResponse = await fetch(`/api/packages/${packageId}/hotels`, {
+      method: "PUT",
 
-        console.log(
-            "Updating hotels:",
-            packageId
-        );
+      headers: {
+        "Content-Type": "application/json",
+      },
 
+      body: JSON.stringify({
+        hotels: hotelChanges,
+      }),
+    });
 
-        const hotelResponse =
-            await fetch(
-                `/api/packages/${packageId}/hotels`,
-                {
+    const hotelResult = await hotelResponse.json();
 
-                    method: "PUT",
+    console.log("HOTEL UPDATE RESPONSE:", hotelResult);
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+    if (!hotelResponse.ok) {
+      throw new Error(
+        hotelResult.message || "Gagal menyimpan perubahan hotel.",
+      );
+    }
 
-                    body:
-                        JSON.stringify({
-                            hotels:
-                                hotelChanges
-                        })
-                }
-            );
+    // ======================================
+    // SUCCESS
+    // ======================================
 
+    alert("Semua perubahan berhasil disimpan!");
 
-        const hotelResult =
-            await hotelResponse.json();
+    // ======================================
+    // RELOAD FROM DATABASE
+    // ======================================
 
+    await loadTourDetail();
+  } catch (error) {
+    console.error("Error saving package:", error);
 
-        console.log(
-            "HOTEL UPDATE RESPONSE:",
-            hotelResult
-        );
+    alert(`Gagal menyimpan perubahan:\n${error.message}`);
+  } finally {
+    if (saveButton) {
+      saveButton.disabled = false;
 
-
-        if (!hotelResponse.ok) {
-
-            throw new Error(
-                hotelResult.message ||
-                "Gagal menyimpan perubahan hotel."
-            );
-        }
-
-
-        // ======================================
-        // SUCCESS
-        // ======================================
-
-        alert(
-            "Perubahan paket dan hotel berhasil disimpan!"
-        );
-
-
-        // ======================================
-        // RELOAD FROM DATABASE
-        // ======================================
-
-        await loadTourDetail();
-
-
-    } catch (error) {
-
-        console.error(
-            "Error saving package:",
-            error
-        );
-
-
-        alert(
-            `Gagal menyimpan perubahan:\n${error.message}`
-        );
-
-
-    } finally {
-
-        if (saveButton) {
-
-            saveButton.disabled = false;
-
-            saveButton.innerHTML = `
+      saveButton.innerHTML = `
                 <i class="fa-solid fa-floppy-disk"></i>
                 Simpan Perubahan
             `;
-        }
     }
+  }
 }
 
 /* ==========================================

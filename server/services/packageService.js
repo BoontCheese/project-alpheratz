@@ -637,17 +637,522 @@ async function updateHotels(packageId, hotels) {
 }
 
 // ==========================================
-// EXPORT FUNCTIONS
+// UPDATE ITINERARIES
+// ==========================================
+
+async function updateItineraries(packageId, itineraries) {
+
+    // ------------------------------------------
+    // Validate itinerary data
+    // ------------------------------------------
+
+    if (!Array.isArray(itineraries)) {
+        throw new Error("Invalid itinerary data");
+    }
+
+
+    // ------------------------------------------
+    // Verify package exists
+    // ------------------------------------------
+
+    const [packageRows] = await db.query(
+        `
+            SELECT package_id
+            FROM tour_packages
+            WHERE package_id = ?
+        `,
+        [packageId]
+    );
+
+
+    if (packageRows.length === 0) {
+        return null;
+    }
+
+
+    // ------------------------------------------
+    // Update each itinerary
+    // ------------------------------------------
+
+    for (const itinerary of itineraries) {
+
+        if (!itinerary.itinerary_id) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Make sure itinerary belongs
+        // to this package
+        // --------------------------------------
+
+        const [itineraryRows] = await db.query(
+            `
+                SELECT itinerary_id
+                FROM package_itineraries
+                WHERE itinerary_id = ?
+                  AND package_id = ?
+            `,
+            [
+                itinerary.itinerary_id,
+                packageId
+            ]
+        );
+
+
+        if (itineraryRows.length === 0) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Update title + description
+        // --------------------------------------
+
+        const updates = [];
+        const params = [];
+
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                itinerary,
+                "title"
+            )
+        ) {
+
+            updates.push("title = ?");
+            params.push(itinerary.title);
+        }
+
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                itinerary,
+                "description"
+            )
+        ) {
+
+            updates.push("description = ?");
+            params.push(itinerary.description);
+        }
+
+
+        if (updates.length === 0) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Add itinerary ID + package ID
+        // --------------------------------------
+
+        params.push(itinerary.itinerary_id);
+        params.push(packageId);
+
+
+        // --------------------------------------
+        // Execute UPDATE
+        // --------------------------------------
+
+        await db.query(
+            `
+                UPDATE package_itineraries
+                SET ${updates.join(", ")}
+                WHERE itinerary_id = ?
+                  AND package_id = ?
+            `,
+            params
+        );
+    }
+
+
+    // ------------------------------------------
+    // Return updated package
+    // ------------------------------------------
+
+    return await getPackageById(packageId);
+}
+
+// ==========================================
+// UPDATE ITINERARY DESTINATIONS
+// ==========================================
+
+async function updateDestinations(packageId, destinations) {
+
+    // ------------------------------------------
+    // Validate destination data
+    // ------------------------------------------
+
+    if (!Array.isArray(destinations)) {
+        throw new Error("Invalid destination data");
+    }
+
+
+    // ------------------------------------------
+    // Verify package exists
+    // ------------------------------------------
+
+    const [packageRows] = await db.query(
+        `
+            SELECT package_id
+            FROM tour_packages
+            WHERE package_id = ?
+        `,
+        [packageId]
+    );
+
+
+    if (packageRows.length === 0) {
+        return null;
+    }
+
+
+    // ------------------------------------------
+    // Update each destination
+    // ------------------------------------------
+
+    for (const destination of destinations) {
+
+        if (!destination.itinerary_destination_id) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Make sure destination belongs
+        // to this package
+        // --------------------------------------
+
+        const [destinationRows] = await db.query(
+            `
+                SELECT
+                    pid.itinerary_destination_id
+                FROM package_itinerary_destinations pid
+
+                INNER JOIN package_itineraries pi
+                    ON pid.itinerary_id = pi.itinerary_id
+
+                WHERE pid.itinerary_destination_id = ?
+                  AND pi.package_id = ?
+            `,
+            [
+                destination.itinerary_destination_id,
+                packageId
+            ]
+        );
+
+
+        if (destinationRows.length === 0) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Find actual destination ID
+        // --------------------------------------
+
+        const [destinationIdRows] = await db.query(
+            `
+                SELECT destination_id
+                FROM package_itinerary_destinations
+                WHERE itinerary_destination_id = ?
+            `,
+            [
+                destination.itinerary_destination_id
+            ]
+        );
+
+
+        if (destinationIdRows.length === 0) {
+            continue;
+        }
+
+
+        const destinationId =
+            destinationIdRows[0].destination_id;
+
+
+        // --------------------------------------
+        // Update destination name
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                destination,
+                "destination_name"
+            )
+        ) {
+
+            await db.query(
+                `
+                    UPDATE destinations
+                    SET destination_name = ?
+                    WHERE destination_id = ?
+                `,
+                [
+                    destination.destination_name,
+                    destinationId
+                ]
+            );
+
+        }
+
+    }
+
+
+    // ------------------------------------------
+    // Return updated package
+    // ------------------------------------------
+
+    return await getPackageById(packageId);
+}
+
+// ==========================================
+// UPDATE ITINERARY ACTIVITIES
+// ==========================================
+// PUT /api/packages/:id/itineraries/activities
+// ==========================================
+
+async function updateActivities(packageId, activities) {
+
+    // ------------------------------------------
+    // Validate activity data
+    // ------------------------------------------
+
+    if (!Array.isArray(activities)) {
+        throw new Error("Invalid activity data");
+    }
+
+
+    // ------------------------------------------
+    // Verify package exists
+    // ------------------------------------------
+
+    const [packageRows] = await db.query(
+        `
+            SELECT package_id
+            FROM tour_packages
+            WHERE package_id = ?
+        `,
+        [packageId]
+    );
+
+
+    if (packageRows.length === 0) {
+        return null;
+    }
+
+
+    // ------------------------------------------
+    // Update each activity
+    // ------------------------------------------
+
+    for (const activity of activities) {
+
+        // --------------------------------------
+        // Skip activity if no ID
+        // --------------------------------------
+
+        if (!activity.activity_id) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Make sure activity belongs
+        // to this package
+        // --------------------------------------
+
+        const [activityRows] = await db.query(
+            `
+                SELECT
+                    pia.activity_id
+                FROM package_itinerary_activities pia
+
+                INNER JOIN package_itineraries pi
+                    ON pia.itinerary_id = pi.itinerary_id
+
+                WHERE pia.activity_id = ?
+                  AND pi.package_id = ?
+            `,
+            [
+                activity.activity_id,
+                packageId
+            ]
+        );
+
+
+        if (activityRows.length === 0) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Build dynamic UPDATE
+        // --------------------------------------
+
+        const updates = [];
+        const params = [];
+
+
+        // --------------------------------------
+        // Activity name
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "activity_name"
+            )
+        ) {
+            updates.push("activity_name = ?");
+            params.push(activity.activity_name);
+        }
+
+
+        // --------------------------------------
+        // Activity type
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "activity_type"
+            )
+        ) {
+            updates.push("activity_type = ?");
+            params.push(activity.activity_type);
+        }
+
+
+        // --------------------------------------
+        // Description
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "description"
+            )
+        ) {
+            updates.push("description = ?");
+            params.push(activity.description);
+        }
+
+
+        // --------------------------------------
+        // Optional status
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "is_optional"
+            )
+        ) {
+            updates.push("is_optional = ?");
+            params.push(activity.is_optional);
+        }
+
+
+        // --------------------------------------
+        // Additional cost
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "additional_cost"
+            )
+        ) {
+            updates.push("additional_cost = ?");
+            params.push(activity.additional_cost);
+        }
+
+
+        // --------------------------------------
+        // Currency
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "currency"
+            )
+        ) {
+            updates.push("currency = ?");
+            params.push(activity.currency);
+        }
+
+
+        // --------------------------------------
+        // Cost unit
+        // --------------------------------------
+
+        if (
+            Object.prototype.hasOwnProperty.call(
+                activity,
+                "cost_unit"
+            )
+        ) {
+            updates.push("cost_unit = ?");
+            params.push(activity.cost_unit);
+        }
+
+
+        // --------------------------------------
+        // Nothing to update
+        // --------------------------------------
+
+        if (updates.length === 0) {
+            continue;
+        }
+
+
+        // --------------------------------------
+        // Add activity ID
+        // --------------------------------------
+
+        params.push(activity.activity_id);
+
+
+        // --------------------------------------
+        // Execute UPDATE
+        // --------------------------------------
+
+        await db.query(
+            `
+                UPDATE package_itinerary_activities
+
+                SET
+                    ${updates.join(", ")}
+
+                WHERE activity_id = ?
+            `,
+            params
+        );
+
+    }
+
+
+    // ------------------------------------------
+    // Return updated package
+    // ------------------------------------------
+
+    return await getPackageById(packageId);
+}
+
+
+// ==========================================
+// EXPORT SERVICE FUNCTIONS
 // ==========================================
 
 module.exports = {
-
     getPackages,
-
     getPackageById,
-
     updatePackage,
-
-    updateHotels
-
+    updateHotels,
+    updateItineraries,
+    updateDestinations,
+    updateActivities
 };

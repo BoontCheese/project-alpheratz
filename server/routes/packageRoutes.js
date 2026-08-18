@@ -54,6 +54,36 @@ router.put(
 );
 
 // ==========================================
+// UPDATE ITINERARIES
+// PUT /api/packages/:id/itineraries
+// ==========================================
+
+router.put(
+    "/:id/itineraries",
+    packageController.updateItineraries
+);
+
+// ==========================================
+// UPDATE ITINERARY DESTINATIONS
+// PUT /api/packages/:id/itineraries/destinations
+// ==========================================
+
+router.put(
+    "/:id/itineraries/destinations",
+    packageController.updateDestinations
+);
+
+// ==========================================
+// UPDATE ITINERARY ACTIVITIES
+// PUT /api/packages/:id/itineraries/activities
+// ==========================================
+
+router.put(
+    "/:id/itineraries/activities",
+    packageController.updateActivities
+);
+
+// ==========================================
 // UPDATE PACKAGE
 // PUT /api/packages/:id
 // ==========================================
